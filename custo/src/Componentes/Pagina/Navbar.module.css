@@ -1,0 +1,22 @@
+.Navbar {
+    width: 100vw;
+    height: 70px;
+    color: crimson;
+    display: flex;
+    background-color: #FFFFFF;
+    justify-content: space-between;
+}
+
+.Logo {
+    width: 5%;
+}
+
+.Navigation {
+    display: flex;
+    margin: 0;
+    width: 400px;
+    gap: 30px;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+}

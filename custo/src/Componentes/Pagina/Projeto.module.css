@@ -1,0 +1,25 @@
+
+
+.PngTransparente {
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+}
+
+.Conteudo { 
+    background-color: aquamarine;
+    display: flex;
+    width: 90%;
+    margin: 6% auto;
+}
+
+.Header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.PngTransparente {
+    position: absolute;
+}

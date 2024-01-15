@@ -16,11 +16,13 @@ function Projeto() {
     return (
         <div className={styles.Projeto}> 
             <Navbar></Navbar>
-            <div className={styles.CriarProjeto}>
+        
                 {mostrar && (
+                    <div className={styles.CriarProjeto}>
                     <CriarProjeto/>
+                    </div>
                 )}
-            </div>
+            
             <div className={styles.Conteudo}>
                 <div className={styles.Header}>
                     <h1>Meus projetos</h1>

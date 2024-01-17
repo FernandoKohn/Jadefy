@@ -4,34 +4,31 @@ import styles from "./CriarProjeto.module.css"
 
 function CriarProjeto({ MudarEstado, }) {
 
-    const [projeto, setProjeto] = useState({})
+    const [projeto, setProjeto] = useState([])
 
     function EnviarForm(event) {
         event.preventDefault()
         var data = new FormData(event.target)
         var value = Object.fromEntries(data.entries())
         setProjeto(value)
-
-        fetch("https://api.jsonbin.io/v3/b/65a6d271266cfc3fde79a01f?meta=false", {
-            method: "POST",
-            headers: {
-                "X-MASTER-KEY": "$2a$10$P91Taemis/4lebG1fO4lHe04u6tJJEIKvKhBtACSuqvfKLZc8sdlm",
-            },
-            body: JSON.stringify(projeto),
-        })
+        fetch("https://my-json-server.typicode.com/FernandoKohn/CustoDB/projetos", {
+                method: 'POST',
+                
+                body: "!aaaa",
+            })
             .then(resp => resp.json())
             .then(data => console.log(data))
-
+            .catch(err => console.log(err))
+            
     }
-
-
 
 return (
     <>
-
+        
         <form className={styles.Formulario} onSubmit={EnviarForm}>
+        
             <header className={styles.FormHeader}>
-                <h1>Novo Projeto</h1>
+                <h1>Criar Projeto</h1>
             </header>
             <label htmlFor="ProjNome">Nome do Projeto</label>
             <input type="text" name="nome" id="ProjNome" maxLength="20" />

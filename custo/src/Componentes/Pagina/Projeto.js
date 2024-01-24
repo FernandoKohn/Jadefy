@@ -56,7 +56,11 @@ function Projeto() {
                     <button onClick={mudarEstado} className={styles.btn}>Criar Projeto</button>
                 </div>
                 <div className={styles.Projetos}>
-                    {projetos.length > 0
+                    {projetos.length > 0 && (
+                        projetos.map((projeto) => {
+                            
+                        })
+                    )
                     }
                 </div>
             </div>

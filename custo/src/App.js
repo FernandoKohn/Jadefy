@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './Componentes/Pagina/Home';
 import Projeto from './Componentes/Pagina/Projeto';
 import Sobre from './Componentes/Pagina/Sobre';
-import 'boxicons'
+
 
 
 function App() {

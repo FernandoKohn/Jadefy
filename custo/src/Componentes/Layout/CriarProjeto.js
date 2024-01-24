@@ -1,25 +1,29 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import styles from "./CriarProjeto.module.css"
 
 
-function CriarProjeto({ MudarEstado, }) {
+
+function CriarProjeto({ mudarEstado, enviarProjeto}) {
 
     const [projeto, setProjeto] = useState([])
 
-    function EnviarForm(event) {
+    function setarForm(event) {
         event.preventDefault()
         var data = new FormData(event.target)
         var value = Object.fromEntries(data.entries())
         setProjeto(value)
+        console.log(projeto)
+        enviarProjeto(projeto)
+        
     }
 
     return (
         <>
-
-            <form className={styles.Formulario} onSubmit={EnviarForm}>
-
+            
+            <form className={styles.Formulario} onSubmit={setarForm}>
                 <header className={styles.FormHeader}>
                     <h1>Criar Projeto</h1>
+                    <i class='bx bxs-check-circle' onClick={mudarEstado}></i>
                 </header>
                 <label htmlFor="ProjNome">Nome do Projeto</label>
                 <input type="text" name="nome" id="ProjNome" maxLength="20" />

@@ -6,10 +6,11 @@
 }
 
 .Conteudo { 
-    background-color: aquamarine;
     display: flex;
+    flex-direction: column;
     width: 90%;
     margin: 6% auto;
+    gap: 30px;
 }
 
 .Header {
@@ -27,4 +28,35 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.EditarProjeto {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(128, 128, 128, 0.363);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Projetos {
+    display: flex;
+    gap:80px;
+}
+
+.ProjetoCard {
+    width: 500px;
+    height: 400px;
+    background-color: aliceblue;
+}
+
+.ProjetoCard h1 {
+    margin-bottom: 50px;
+}
+
+.ProjetoCard p {
+    font-size: 1.2em;
 }

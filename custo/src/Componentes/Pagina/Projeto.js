@@ -10,9 +10,11 @@ function Projeto() {
     const [mostrar1, setMostrar] = useState(false)
     const [mostrar2, setMostrar2] = useState(false)
     const [projetos, setProjetos] = useState([])
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        fetch("http://localhost:5000/Projetos", {
+        setTimeout(() => {
+            fetch("http://localhost:5000/Projetos", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -21,9 +23,10 @@ function Projeto() {
             .then(resp => resp.json())
             .then((data) => {
                 setProjetos(data)
+                setLoading(false)
             })
+        }, 1500)
     })
-
 
     function mostrarCriar() {
         setMostrar(!mostrar1)
@@ -45,8 +48,6 @@ function Projeto() {
             .then(data => console.log(data))
             .catch(err => console.log(err))
     }
-
-
 
     function removerProjeto(e) {
         let id = e.target.id
@@ -77,6 +78,7 @@ function Projeto() {
         })
     }
 
+    
 
 
     return (
@@ -95,6 +97,12 @@ function Projeto() {
                     <button onClick={mostrarCriar} className={styles.btn}>Criar Projeto</button>
                 </div>
                 <div className={styles.Projetos}>
+                    {loading && (
+                        <div className={styles.Loading}>
+                            <i></i>
+                            <p>Carregando projetos</p>
+                        </div>
+                    )}
                     {projetos.length > 0 && projetos.map((projeto) => (
                         <div className={styles.ProjetoCard} key={projeto.id}>
                             <h1>{projeto.nome}</h1>

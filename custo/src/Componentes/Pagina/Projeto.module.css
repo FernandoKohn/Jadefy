@@ -3,6 +3,7 @@
     position: relative;
     width: 100vw;
     height: 100vh;
+    overflow-y: scroll;
 }
 
 .Conteudo { 
@@ -44,11 +45,13 @@
 
 .Projetos {
     display: flex;
-    gap:80px;
+    flex-wrap: wrap;
+    width: 90vw;
+    gap: 40px;
 }
 
 .ProjetoCard {
-    width: 500px;
+    width: 545px;
     height: 400px;
     background-color: aliceblue;
 }

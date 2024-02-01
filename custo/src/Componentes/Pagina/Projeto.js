@@ -3,6 +3,7 @@ import Navbar from "./Navbar"
 import { useEffect, useState } from "react"
 import CriarProjeto from "../Layout/CriarProjeto"
 import EditarProjeto from "../Layout/EditarProjeto"
+import { Link } from 'react-router-dom'
 
 
 function Projeto() {
@@ -83,7 +84,7 @@ function Projeto() {
 
     return (
         <div className={styles.Projeto}>
-            <Navbar></Navbar>
+            <Navbar/>
 
             {mostrar1 && (
                 <div className={styles.CriarProjeto}>
@@ -105,13 +106,18 @@ function Projeto() {
                     )}
                     {projetos.length > 0 && projetos.map((projeto) => (
                         <div className={styles.ProjetoCard} key={projeto.id}>
+                            <div className={styles.Icones}>
+                                <i class='bx bx-x' id={projeto.id} onClick={removerProjeto}></i>
+                                <i class='bx bxs-pencil' id={styles.Lapis} onClick={mostrarEditar}></i>
+                            </div>
                             <h1>{projeto.nome}</h1>
                             <p>Tipo: {projeto.tipo}</p>
                             <p>Orçamento: {projeto.orcamento}</p>
                             <p>Prazo de entrega: {projeto.prazo}</p>
-                            <button id={projeto.id} onClick={removerProjeto}>Apagar</button>
-                            <button onClick={mostrarEditar}>Alterar</button>
-                            {mostrar2 && (
+                            <Link to={'/Projeto/' + projeto.id}>
+                                <button>Ver projeto</button>
+                            </Link>
+                            {mostrar2 && (  
                                 <div className={styles.EditarProjeto}>
                                     <EditarProjeto
                                         mostrarEditar={mostrarEditar}

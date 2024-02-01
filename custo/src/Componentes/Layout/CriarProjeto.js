@@ -5,8 +5,6 @@ import styles from "./CriarProjeto.module.css"
 
 function CriarProjeto({ mudarEstado, enviarProjeto}) {
 
-    const [projeto, setProjeto] = useState([])
-
     function setarForm(event) {
         var data = new FormData(event.target)
         var value = Object.fromEntries(data.entries())

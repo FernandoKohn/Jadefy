@@ -54,6 +54,7 @@
     width: 545px;
     height: 400px;
     background-color: aliceblue;
+    
 }
 
 .ProjetoCard h1 {
@@ -62,4 +63,21 @@
 
 .ProjetoCard p {
     font-size: 1.2em;
+}
+
+.Icones {
+    font-size: 2em;
+}
+
+.Icones i {
+    float: right;
+}
+
+.Icones i:hover {
+    cursor: pointer;    
+}
+
+#Lapis {
+    font-size: 0.7em;
+    margin-top: 4px;
 }

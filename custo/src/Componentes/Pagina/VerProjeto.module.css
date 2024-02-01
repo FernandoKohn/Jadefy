@@ -1,0 +1,42 @@
+.VerProjeto {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+.Conteudo { 
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 6% auto;
+    gap: 30px;
+}
+
+.Header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ProjetoInfo {
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: start;
+}
+
+.Servicos {
+    text-align: left;
+}
+
+.CriarServico {
+    position: absolute;
+    top: 0;
+    background-color: rgba(128, 128, 128, 0.363);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,0 +1,45 @@
+.Formulario {
+    width: 1200px;
+    height: 800px;
+    background-color:  #FFFFFF;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 30px;
+    
+}
+
+
+.Formulario input {
+    width: 300px;
+    height: 50px;
+    font-size: 1.1em;
+    margin-left: 40px;
+}
+
+.Formulario label {
+    font-size: 1.4em;
+    display: flex;
+    margin-left: 40px;
+}
+
+
+.Formulario button {
+    width: 120px;
+    align-self: center;
+}
+
+.FormHeader{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Formulario i {
+    font-size: 3em;
+}
+
+form button {
+    margin-top: 5em;
+}

@@ -9,7 +9,6 @@ function CriarProjeto({ mudarEstado, enviarProjeto}) {
         var data = new FormData(event.target)
         var value = Object.fromEntries(data.entries())
         enviarProjeto(value)
-        
     }
 
     return (

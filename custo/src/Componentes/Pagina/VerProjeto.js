@@ -3,11 +3,12 @@ import Navbar from "./Navbar"
 import styles from "./VerProjeto.module.css"
 import { useParams } from "react-router-dom"
 import CriarServico from "../Layout/CriarServico"
+import { uuid } from 'uuidv4';
 
 
 function VerProjeto() {
     const [projeto, setProjeto] = useState([])
-    const [servico, setServico] = useState([])
+    const [servico, setServico] = useState({})
     const [mostrar, setMostrar] = useState(false)
     var { id } = useParams()
 
@@ -23,13 +24,16 @@ function VerProjeto() {
             .catch(err => console.log(err))
     }, [id])
 
-    function EnviarServico(servico) {
-        fetch('http://localhost:5000/Servicos', {
-            method: 'POST',
+    function EnviarServico(projeto) {
+        var ultimoservico = projeto.servicos[projeto.servicos.length - 1]
+        ultimoservico.id = uuidv4()
+
+        fetch(`http://localhost:5000/Projetos/${id}`, {
+            method: 'PATCH',
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(servico)
+            body: JSON.stringify(projeto)
         })
         .then(resp => resp.json())
         .then(() => {
@@ -47,7 +51,7 @@ function VerProjeto() {
             <Navbar />
             {mostrar && (
                 <div className={styles.CriarServico}>
-                    <CriarServico setMostrar={ToggleMostrar} EnviarServico={EnviarServico} ProjetoId={id}/>
+                    <CriarServico setMostrar={ToggleMostrar} EnviarServico={EnviarServico} Projeto={projeto}/>
                 </div>
                 
             )}

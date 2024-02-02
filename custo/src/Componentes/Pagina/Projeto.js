@@ -38,6 +38,9 @@ function Projeto() {
     }
 
     function enviarProjeto(projeto) {
+
+        projeto.servicos = []
+
         fetch("http://localhost:5000/Projetos", {
             method: "POST",
             headers: {

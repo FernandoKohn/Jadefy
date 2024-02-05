@@ -49,7 +49,6 @@ function Projeto() {
             body: JSON.stringify(projeto)
         })
             .then(res => res.json())
-            .then(data => console.log(data))
             .catch(err => console.log(err))
     }
 
@@ -65,6 +64,7 @@ function Projeto() {
             .then((data) => {
                 setProjetos(projetos.filter((projeto) => projeto.id !== id))
             })
+            .catch(err => console.log(err))
     }
 
     function editarProjeto(projeto, id) {
@@ -80,6 +80,7 @@ function Projeto() {
             setProjetos(data)
             setMostrar2(!mostrar2)
         })
+        .catch(err => console.log(err))
     }
 
     
@@ -110,8 +111,8 @@ function Projeto() {
                     {projetos.length > 0 && projetos.map((projeto) => (
                         <div className={styles.ProjetoCard} key={projeto.id}>
                             <div className={styles.Icones}>
-                                <i class='bx bx-x' id={projeto.id} onClick={removerProjeto}></i>
-                                <i class='bx bxs-pencil' id={styles.Lapis} onClick={mostrarEditar}></i>
+                                <i className='bx bx-x' id={projeto.id} onClick={removerProjeto}></i>
+                                <i className='bx bxs-pencil' id={styles.Lapis} onClick={mostrarEditar}></i>
                             </div>
                             <h1>{projeto.nome}</h1>
                             <p>Tipo: {projeto.tipo}</p>

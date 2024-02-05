@@ -1,52 +1,29 @@
 {
   "Projetos": [
     {
-      "id": "e1aa",
-      "nome": "Teste de Projeto",
-      "tipo": "Teste de tipo",
-      "orcamento": "3000",
-      "prazo": "2024-02-16",
+      "id": "e7a1",
+      "nome": "Novo Projeto",
+      "tipo": "Engenharia",
+      "orcamento": "2.000",
+      "prazo": "2024-02-21",
       "servicos": [
         {
-          "Nome Serviço": "aaaa",
-          "Custo Serviço": "32323",
-          "Descrição": "dsdsds"
+          "Nome": "Redator",
+          "Custo": "3000",
+          "Descricao": "Redator das obras",
+          "id": 0
         },
         {
-          "Nome Serviço": "asdasd",
-          "Custo Serviço": "123123",
-          "Descrição": "asasd"
+          "Nome": "Teste2 ",
+          "Custo": "50000",
+          "Descricao": "gouihje",
+          "id": 0
         },
         {
-          "Nome Serviço": "wewe",
-          "Custo Serviço": "23232",
-          "Descrição": "32323"
-        },
-        {
-          "Nome Serviço": "wdd",
-          "Custo Serviço": "232",
-          "Descrição": "3232"
-        },
-        {
-          "Nome Serviço": "2323",
-          "Custo Serviço": "23232",
-          "Descrição": "32323"
-        },
-        {
-          "Nome Serviço": "dasda",
-          "Custo Serviço": "23123",
-          "Descrição": "12312312"
-        },
-        {
-          "Nome Serviço": "2323",
-          "Custo Serviço": "2323",
-          "Descrição": "2323",
-          "id": 2
-        },
-        {
-          "Nome Serviço": "3232",
-          "Custo Serviço": "32323",
-          "Descrição": "232"
+          "Nome": "wdadwa",
+          "Custo": "2323",
+          "Descricao": "dsda",
+          "id": 0
         }
       ]
     }

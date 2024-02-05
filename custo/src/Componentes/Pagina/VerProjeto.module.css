@@ -2,9 +2,10 @@
     position: relative;
     width: 100vw;
     height: 100vh;
+    overflow-y: scroll;
 }
 
-.Conteudo { 
+.Conteudo {
     display: flex;
     flex-direction: column;
     width: 90%;
@@ -30,6 +31,12 @@
     text-align: left;
 }
 
+.ServicosDiv {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
 .CriarServico {
     position: absolute;
     top: 0;
@@ -39,4 +46,25 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.ServicoCard {
+    width: 545px;
+    height: 400px;
+    background-color: aliceblue;
+    text-align: center;
+}
+
+.ServicoCard h1 {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.ServicoCard p {
+    font-size: 1.2em;
+}
+
+.ServicoCard button {
+    margin-top: 6em;
+    width: 100px;
 }

@@ -21,11 +21,11 @@ function CriarServico({setMostrar, EnviarServico, Projeto}) {
                     <i className='bx bxs-check-circle' onClick={setMostrar}></i>
                 </header>
                 <label htmlFor="ServNome">Nome do Serviço</label>
-                <input type="text" name="Nome Serviço" id="ServNome" maxLength="20"  />
+                <input type="text" name="Nome" id="ServNome" maxLength="20"  />
                 <label htmlFor="ServCusto">Custo do Serviço</label>
-                <input type="number" name="Custo Serviço" id="ServCusto" />
+                <input type="number" name="Custo" id="ServCusto" />
                 <label htmlFor="ServDescri">Descrição</label>
-                <input type="text" name="Descrição" id="ServDescri" maxLength="100" />
+                <input type="text" name="Descricao" id="ServDescri" maxLength="100" />
                 <button type="submit">Cadastrar Serviço</button>
         </form>
         </>

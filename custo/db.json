@@ -1,31 +1,12 @@
 {
   "Projetos": [
     {
-      "id": "e7a1",
-      "nome": "Novo Projeto",
-      "tipo": "Engenharia",
-      "orcamento": "2.000",
-      "prazo": "2024-02-21",
-      "servicos": [
-        {
-          "Nome": "Redator",
-          "Custo": "3000",
-          "Descricao": "Redator das obras",
-          "id": 0
-        },
-        {
-          "Nome": "Teste2 ",
-          "Custo": "50000",
-          "Descricao": "gouihje",
-          "id": 0
-        },
-        {
-          "Nome": "wdadwa",
-          "Custo": "2323",
-          "Descricao": "dsda",
-          "id": 0
-        }
-      ]
+      "id": "a2a6",
+      "nome": "OUtro",
+      "tipo": "OUtro",
+      "orcamento": "20320",
+      "prazo": "2024-02-23",
+      "servicos": []
     }
   ]
 }

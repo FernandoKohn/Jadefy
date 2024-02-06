@@ -5,7 +5,6 @@ function CriarServico({setMostrar, EnviarServico, Projeto}) {
 
     function setarForm(event) {
         event.preventDefault()
-        Projeto.servicos.id = 0
         var data = new FormData(event.target)
         var value = Object.fromEntries(data.entries())
         Projeto.servicos.push(value)
@@ -21,11 +20,11 @@ function CriarServico({setMostrar, EnviarServico, Projeto}) {
                     <i className='bx bxs-check-circle' onClick={setMostrar}></i>
                 </header>
                 <label htmlFor="ServNome">Nome do Serviço</label>
-                <input type="text" name="Nome" id="ServNome" maxLength="20"  />
+                <input type="text" name="nome" id="ServNome" maxLength="20"  />
                 <label htmlFor="ServCusto">Custo do Serviço</label>
-                <input type="number" name="Custo" id="ServCusto" />
+                <input type="number" name="custo" id="ServCusto" />
                 <label htmlFor="ServDescri">Descrição</label>
-                <input type="text" name="Descricao" id="ServDescri" maxLength="100" />
+                <input type="text" name="descricao" id="ServDescri" maxLength="100" />
                 <button type="submit">Cadastrar Serviço</button>
         </form>
         </>

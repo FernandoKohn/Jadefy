@@ -3,6 +3,7 @@ import Navbar from "./Navbar"
 import styles from "./VerProjeto.module.css"
 import { useParams } from "react-router-dom"
 import CriarServico from "../Layout/CriarServico"
+import { v4 as uuidv4 } from 'uuid';
 
 
 
@@ -10,7 +11,6 @@ function VerProjeto() {
     const [projeto, setProjeto] = useState([])
     const [servico, setServico] = useState([])
     const [mostrar, setMostrar] = useState(false)
-    const [servicoid, setServicoid] = useState(0)
     var { id } = useParams()
 
 
@@ -30,42 +30,51 @@ function VerProjeto() {
     }, [id])
 
 
-    function EnviarServico(projeto) {
-        var ultimoservico = projeto.servicos[projeto.servicos.length - 1]
-        setServicoid(servicoid + 1)
-        ultimoservico.id = servicoid
-
+    function EnviarServico(novoProjeto) {
+        var ultimoservico = novoProjeto.servicos[novoProjeto.servicos.length - 1]
+        ultimoservico.id = uuidv4()
+        var custoServico = parseFloat(ultimoservico.custo)
+        var projetoOrcamento = parseFloat(projeto.orcamento)
+        
+        if (custoServico > projetoOrcamento) {
+            window.alert("O custo do seu serviço ultrapassa o orçamento")
+            novoProjeto.servicos.pop()
+        }
+        
         fetch(`http://localhost:5000/Projetos/${id}`, {
             method: 'PATCH',
-            headers: {
+            headers: {  
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(projeto)
+            body: JSON.stringify(novoProjeto)
         })
         .then(resp => resp.json())
         .then((data) => {
             setMostrar(false)
+            setServico(data.servicos)
+            console.log(servico)
         })
-        .catch(err => console.log(err))
+        .catch(err => console.log(err))   
     }
 
     function removerServico(e) {
-        var IdServico = e.target.id
-        projeto.servicos.filter((servico) => servico.id !== IdServico)
-        console.log(projeto)
+        var novoProjeto = projeto
+        var Filtro = servico.filter((servico) => servico.id != e.target.id)
+        novoProjeto.servicos = Filtro
         
-        // fetch(`http://localhost:5000/Projetos/${id}`, {
-        //     method: 'PATCH',
-        //     headers: {
-        //     'Content-Type':"application/json"
-        //     },
-        //     body: JSON.stringify(ProjetoAtualizado)
-        // })
-        // .then(resp => resp.json())
-        // .then(data => {
-        //     console.log(data)
-        // })
-        // .catch(err => console.log(err))
+        fetch(`http://localhost:5000/Projetos/${id}`, {
+            method: 'PATCH',
+            headers: {
+            'Content-Type':"application/json"
+            },
+            body: JSON.stringify(novoProjeto)
+        })
+        .then(resp => resp.json())
+        .then(data => {
+            console.log(data)
+            window.location.reload();
+        })
+        .catch(err => console.log(err))
     }
 
 
@@ -98,9 +107,9 @@ function VerProjeto() {
                     <div className={styles.ServicosDiv}>
                         {servico.length > 0 && servico.map((servico) => (
                             <div className={styles.ServicoCard} key={servico.id} >
-                                <h1>{servico.Nome}</h1>
-                                <p>{servico.Custo}</p>
-                                <p>{servico.Descricao}</p>
+                                <h1>{servico.nome}</h1>
+                                <p>{servico.custo}</p>
+                                <p>{servico.descricao}</p>
                                 <button onClick={removerServico} id={servico.id}>Apagar Serviço</button>
                             </div>
                         ))}

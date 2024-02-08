@@ -7,6 +7,24 @@
   overflow: hidden;
 }
 
+:root {
+  --deepblue: #001F3F;
+  --forestgreen: #2ECC71;
+  --charcoalgray: #34495E;
+  --gold: #FFD700;
+  --white: #FFFFFF;
+}
+
+h1  {
+  font-size: 2em;
+  margin: 0;
+}
+
+p {
+  font-size: 1.2em;
+  margin: 0;
+}
+
 .App {
   text-align: center;
 }

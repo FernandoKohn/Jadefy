@@ -3,12 +3,12 @@ import styles from "./CriarProjeto.module.css"
 
 
 
-function EditarProjeto({ mostrarEditar, id, nome, tipo, orcamento, prazo, editarProjeto }) {
+function EditarProjeto({ mostrarEditar, nome, tipo, orcamento, prazo, editarProjeto }) {
 
     function setarForm(event) {
         var data = new FormData(event.target)
         var value = Object.fromEntries(data.entries())
-        editarProjeto(value, id)
+        editarProjeto(value)
     }
 
     return (

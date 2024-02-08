@@ -20,6 +20,7 @@
     justify-content: space-between;
 }
 
+
 .CriarProjeto {
     position: absolute;
     top: 0;
@@ -31,17 +32,7 @@
     justify-content: center;
 }
 
-.EditarProjeto {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: rgba(128, 128, 128, 0.363);
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+
 
 .Projetos {
     display: flex;
@@ -77,7 +68,28 @@
     cursor: pointer;    
 }
 
-#Lapis {
-    font-size: 0.7em;
-    margin-top: 4px;
+.error {
+    color: crimson;
+}
+
+.ErrorDiv {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.ErrorDiv i {
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.Loading {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.Loading i{
+    font-size: 1.5em;
+    cursor: pointer;
 }

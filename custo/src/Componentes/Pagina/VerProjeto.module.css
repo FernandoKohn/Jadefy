@@ -68,3 +68,24 @@
     margin-top: 6em;
     width: 100px;
 }
+
+.EditarProjeto {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(128, 128, 128, 0.363);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn {
+    gap: 30px;
+    display: flex;
+}
+
+.btnFilho {
+    height: 80px;
+}

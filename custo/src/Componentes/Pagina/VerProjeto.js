@@ -11,6 +11,7 @@ function VerProjeto() {
     const [projeto, setProjeto] = useState([])
     const [servico, setServico] = useState([])
     const [mostrar, setMostrar] = useState(false)
+
     var { id } = useParams()
 
 
@@ -35,11 +36,15 @@ function VerProjeto() {
         ultimoservico.id = uuidv4()
         var custoServico = parseFloat(ultimoservico.custo)
         var projetoOrcamento = parseFloat(projeto.orcamento)
+        var novoCusto = parseFloat(novoProjeto.custo) + custoServico
         
-        if (custoServico > projetoOrcamento) {
+        if (custoServico > projetoOrcamento || novoCusto > projetoOrcamento)  {
             window.alert("O custo do seu serviço ultrapassa o orçamento")
             novoProjeto.servicos.pop()
+            return false
         }
+
+        novoProjeto.custo = novoCusto
         
         fetch(`http://localhost:5000/Projetos/${id}`, {
             method: 'PATCH',
@@ -52,15 +57,15 @@ function VerProjeto() {
         .then((data) => {
             setMostrar(false)
             setServico(data.servicos)
-            console.log(servico)
         })
         .catch(err => console.log(err))   
     }
 
-    function removerServico(e) {
-        var novoProjeto = projeto
-        var Filtro = servico.filter((servico) => servico.id != e.target.id)
+    function removerServico(servicoId,custo) {
+        var novoProjeto = projeto 
+        var Filtro = servico.filter((servico) => servico.id != servicoId)
         novoProjeto.servicos = Filtro
+        novoProjeto.custo = novoProjeto.custo - custo
         
         fetch(`http://localhost:5000/Projetos/${id}`, {
             method: 'PATCH',
@@ -71,8 +76,9 @@ function VerProjeto() {
         })
         .then(resp => resp.json())
         .then(data => {
-            console.log(data)
+            setProjeto(novoProjeto)
             window.location.reload();
+
         })
         .catch(err => console.log(err))
     }
@@ -110,7 +116,7 @@ function VerProjeto() {
                                 <h1>{servico.nome}</h1>
                                 <p>{servico.custo}</p>
                                 <p>{servico.descricao}</p>
-                                <button onClick={removerServico} id={servico.id}>Apagar Serviço</button>
+                                <button onClick={() => {removerServico(servico.id,servico.custo)}}>Apagar Serviço</button>
                             </div>
                         ))}
                     </div>

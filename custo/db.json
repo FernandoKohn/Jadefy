@@ -1,12 +1,13 @@
 {
   "Projetos": [
     {
-      "id": "a2a6",
-      "nome": "OUtro",
-      "tipo": "OUtro",
-      "orcamento": "20320",
-      "prazo": "2024-02-23",
-      "servicos": []
+      "id": "d9d4",
+      "nome": "Teste",
+      "tipo": "Teste",
+      "orcamento": "100",
+      "prazo": "2024-02-29",
+      "servicos": [],
+      "custo": 0
     }
   ]
 }

@@ -26,7 +26,7 @@ function Projeto() {
                 setProjetos(data)
                 setLoading(false)
             })
-        }, 1500)
+        }, 1000)
     })
 
     function mostrarCriar() {
@@ -40,6 +40,7 @@ function Projeto() {
     function enviarProjeto(projeto) {
 
         projeto.servicos = []
+        projeto.custo = 0
 
         fetch("http://localhost:5000/Projetos", {
             method: "POST",

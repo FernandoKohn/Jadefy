@@ -1,22 +1,30 @@
 .Navbar {
     width: 100vw;
-    height: 70px;
+    height: 100px;
     color: crimson;
     display: flex;
-    background-color: #FFFFFF;
-    justify-content: space-between;
+    background-color: #EAEEF4;
+    align-items: center;
 }
+
+.Navbar h1 {
+    padding-left: 2% ;
+}
+
+
 
 .Logo {
     width: 5%;
 }
 
 .Navigation {
+    background-color: blue;
     display: flex;
+    padding-top: 10px;
     margin: 0;
     width: 400px;
-    gap: 30px;
-    background-color: white;
+    gap: 50px;
+    background-color: #EAEEF4;
     justify-content: center;
     align-items: center;
 }

@@ -14,6 +14,8 @@
     gap: 30px;
 }
 
+
+
 .Header {
     width: 100%;
     display: flex;
@@ -32,28 +34,50 @@
     justify-content: center;
 }
 
-
+.projetoSection {
+    background-color: aqua;
+    width: 40%;
+}
 
 .Projetos {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     width: 90vw;
-    gap: 40px;
+    gap: 15px;
+    height: 100%;
 }
 
 .ProjetoCard {
     width: 545px;
-    height: 400px;
+    height: 250px;
+    border-radius: 20px;
     background-color: aliceblue;
-    
+    text-align: start;
+    padding-left: 20px;
 }
 
 .ProjetoCard h1 {
     margin-bottom: 50px;
+    font-size: 1.7em;
 }
 
 .ProjetoCard p {
     font-size: 1.2em;
+}
+
+.projetoHeader {
+    display: flex;
+    background-color: aquamarine;
+    align-items: center;
+}
+
+.projetoHeader input {
+    background-color: blueviolet;
+}
+
+.projetoHeader h1 {
+    background-color: blue;
 }
 
 .Icones {

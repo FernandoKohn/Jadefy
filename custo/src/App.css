@@ -5,6 +5,7 @@
   font-weight: bold;
   color: #7B818A;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 :root {

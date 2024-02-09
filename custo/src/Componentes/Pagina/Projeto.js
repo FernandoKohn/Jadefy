@@ -86,39 +86,43 @@ function Projeto() {
 
             <div className={styles.Conteudo}>
                 <div className={styles.Header}>
-                        <h1>Meus projetos</h1>
+                    <h1>Meus projetos</h1>
                     <button onClick={mostrarCriar} className={styles.btn}>Criar Projeto</button>
                 </div>
-                <div className={styles.Projetos}>
-                    {loading && (
-                        <div className={styles.Loading}>
-                            <p>Carregando projetos</p>
-                            <i class='bx bx-loader-circle bx-tada' ></i>
-                        </div>
-                    )}
-                    {mensagemTipo == 'error' && (
+                <div className={styles.projetoSection}>
+                    <div className={styles.Projetos}>
+                        {loading && (
+                            <div className={styles.Loading}>
+                                <p>Carregando projetos</p>
+                                <i class='bx bx-loader-circle bx-tada' ></i>
+                            </div>
+                        )}
+                        {mensagemTipo == 'error' && (
                             <div className={styles.ErrorDiv}>
                                 <p className={styles[mensagemTipo]}>{mensagem}</p>
                                 <i class='bx bx-revision' onClick={refreshpage}></i>
                             </div>
                         )}
-                    {projetos.length > 0 && projetos.map((projeto) => (
-                        <div className={styles.ProjetoCard} key={projeto.id}>
-                            <div className={styles.Icones}>
-                                <i className='bx bx-x' id={projeto.id} onClick={removerProjeto}></i>
+                        {projetos.length > 0 && projetos.map((projeto) => (
+                            <div className={styles.ProjetoCard} key={projeto.id}>
+                                <div className={styles.Icones}>
+                                    <i className='bx bx-x' id={projeto.id} onClick={removerProjeto}></i>
+                                </div>
+                                <div className={styles.projetoHeader}>
+                                    <input type="checkbox" name="Checkbox" id="checkboxProjeto" />
+                                    <h1>{projeto.nome}</h1>
+                                </div>
+                                <p>Tipo: {projeto.tipo}</p>
+                                <p>Orçamento: {projeto.orcamento}</p>
+                                <p>Prazo de entrega: {projeto.prazo}</p>
+                                <Link to={'/Projeto/' + projeto.id}>
+                                    <button>Ver projeto</button>
+                                </Link>
                             </div>
-                            <h1>{projeto.nome}</h1>
-                            <p>Tipo: {projeto.tipo}</p>
-                            <p>Orçamento: {projeto.orcamento}</p>
-                            <p>Prazo de entrega: {projeto.prazo}</p>
-                            <Link to={'/Projeto/' + projeto.id}>
-                                <button>Ver projeto</button>
-                            </Link>
-
-                        </div>
-                    )
-                    )
-                    }
+                        )
+                        )
+                        }
+                    </div>
                 </div>
             </div>
         </div>

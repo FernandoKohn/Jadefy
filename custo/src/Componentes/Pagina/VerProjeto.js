@@ -8,31 +8,31 @@ import EditarProjeto from "../Layout/EditarProjeto"
 
 
 
-function VerProjeto() {
+function VerProjeto(ProjetoId) {
     const [projeto, setProjeto] = useState([])
     const [servico, setServico] = useState([])
     const [mostrar, setMostrar] = useState(false)
     const [mostrar2, setMostrar2] = useState(false)
-    var { id } = useParams()
+    // var { id } = useParams()
 
 
     
 
 
-    useEffect(() => {
-        fetch(`http://localhost:5000/Projetos/${id}`, {
-            method: 'GET',
-            headers: {
-                "Content-Type": "application/json"
-            },
-        })
-            .then(resp => resp.json())
-            .then((data) => {
-                setProjeto(data)
-                setServico(data.servicos)
-            })
-            .catch(err => console.log(err))
-    }, [id])
+    // useEffect(() => {
+    //     fetch(`http://localhost:5000/Projetos/${ProjetoId}`, {
+    //         method: 'GET',
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         },
+    //     })
+    //         .then(resp => resp.json())
+    //         .then((data) => {
+    //             setProjeto(data)
+    //             setServico(data.servicos)
+    //         })
+    //         .catch(err => console.log(err))
+    // }, [ProjetoId])
 
     function EnviarServico(novoProjeto) {
         var ultimoservico = novoProjeto.servicos[novoProjeto.servicos.length - 1]
@@ -49,7 +49,7 @@ function VerProjeto() {
 
         novoProjeto.custo = novoCusto
 
-        fetch(`http://localhost:5000/Projetos/${id}`, {
+        fetch(`http://localhost:5000/Projetos/${ProjetoId}`, {
             method: 'PATCH',
             headers: {
                 "Content-Type": "application/json"
@@ -70,7 +70,7 @@ function VerProjeto() {
         novoProjeto.servicos = Filtro
         novoProjeto.custo = novoProjeto.custo - custo
 
-        fetch(`http://localhost:5000/Projetos/${id}`, {
+        fetch(`http://localhost:5000/Projetos/${ProjetoId}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': "application/json"
@@ -95,7 +95,7 @@ function VerProjeto() {
     }
     
     function editarProjeto(projeto) {
-        fetch(`http://localhost:5000/Projetos/${id}`, {
+        fetch(`http://localhost:5000/Projetos/${ProjetoId}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
@@ -112,32 +112,15 @@ function VerProjeto() {
 
 
     return (
-        <div className={styles.VerProjeto}>
-            <Navbar />
+        <>
             {mostrar && (
                 <div className={styles.CriarServico}>
                     <CriarServico setMostrar={ToggleMostrar} EnviarServico={EnviarServico} Projeto={projeto} />
                 </div>
             )}
-            {mostrar2 && (
-                <div className={styles.EditarProjeto}>
-                    <EditarProjeto
-                        mostrarEditar={ToggleMostrar2}
-                        editarProjeto={editarProjeto}
-                        id={projeto.id}
-                        nome={projeto.nome}
-                        tipo={projeto.tipo}
-                        orcamento={projeto.orcamento}
-                        prazo={projeto.prazo} />
-                </div>
-            )}
             <div className={styles.Conteudo}>
                 <div className={styles.Header}>
                     <h1>{projeto.nome}</h1>
-                    <div className={styles.btn}>
-                        <button className={styles.btnFilho} onClick={ToggleMostrar}>Criar Serviço</button>
-                        <button className={styles.btnFilho} onClick={ToggleMostrar2}>Editar Projeto</button>
-                    </div>
                 </div>
                 <div className={styles.ProjetoInfo}>
                     <p>{projeto.tipo}</p>
@@ -162,7 +145,7 @@ function VerProjeto() {
 
 
             </div>
-        </div>
+        </>
     )
 }
 

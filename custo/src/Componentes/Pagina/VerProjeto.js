@@ -13,26 +13,24 @@ function VerProjeto(ProjetoId) {
     const [servico, setServico] = useState([])
     const [mostrar, setMostrar] = useState(false)
     const [mostrar2, setMostrar2] = useState(false)
-    // var { id } = useParams()
 
 
-    
 
+    useEffect(() => {
+        fetch(`http://localhost:5000/Projetos/`, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json"
+            },
+        })
+            .then(resp => resp.json())
+            .then((data) => {
+                setProjeto(data)
+                setServico(data.servicos)
+            })
+            .catch(err => console.log(err))
+    }, [ProjetoId])
 
-    // useEffect(() => {
-    //     fetch(`http://localhost:5000/Projetos/${ProjetoId}`, {
-    //         method: 'GET',
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //     })
-    //         .then(resp => resp.json())
-    //         .then((data) => {
-    //             setProjeto(data)
-    //             setServico(data.servicos)
-    //         })
-    //         .catch(err => console.log(err))
-    // }, [ProjetoId])
 
     function EnviarServico(novoProjeto) {
         var ultimoservico = novoProjeto.servicos[novoProjeto.servicos.length - 1]
@@ -86,14 +84,7 @@ function VerProjeto(ProjetoId) {
             .catch(err => console.log(err))
     }
 
-    function ToggleMostrar() {
-        setMostrar(!mostrar)
-    }
 
-    function ToggleMostrar2() {
-        setMostrar2(!mostrar2)
-    }
-    
     function editarProjeto(projeto) {
         fetch(`http://localhost:5000/Projetos/${ProjetoId}`, {
             method: "PATCH",
@@ -109,41 +100,17 @@ function VerProjeto(ProjetoId) {
             .catch(err => console.log(err))
     }
 
-
-
     return (
         <>
-            {mostrar && (
-                <div className={styles.CriarServico}>
-                    <CriarServico setMostrar={ToggleMostrar} EnviarServico={EnviarServico} Projeto={projeto} />
-                </div>
-            )}
-            <div className={styles.Conteudo}>
-                <div className={styles.Header}>
-                    <h1>{projeto.nome}</h1>
-                </div>
-                <div className={styles.ProjetoInfo}>
-                    <p>{projeto.tipo}</p>
-                    <p>{projeto.orcamento}</p>
-                    <p>orçamento total*</p>
-                    <p>{projeto.prazo}</p>
-                </div>
-                <div className={styles.Servicos}>
-                    <h1>Serviços</h1>
-                    <div className={styles.ServicosDiv}>
-                        {servico.length > 0 && servico.map((servico) => (
-                            <div className={styles.ServicoCard} key={servico.id} >
-                                <h1>{servico.nome}</h1>
-                                <p>{servico.custo}</p>
-                                <p>{servico.descricao}</p>
-                                <button onClick={() => { removerServico(servico.id, servico.custo) }}>Apagar Serviço</button>
-                            </div>
-                        ))}
+            <div className={styles.ServicosDiv}>
+                {servico.length > 0 && servico.map((servico) => (
+                    <div className={styles.ServicoCard} key={servico.id} >
+                        <h1>{servico.nome}</h1>
+                        <p>{servico.custo}</p>
+                        <p>{servico.descricao}</p>
+                        <button onClick={() => { removerServico(servico.id, servico.custo) }}>Apagar Serviço</button>
                     </div>
-
-                </div>
-
-
+                ))}
             </div>
         </>
     )

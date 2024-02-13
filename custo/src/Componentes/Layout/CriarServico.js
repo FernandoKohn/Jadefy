@@ -25,7 +25,9 @@ function CriarServico({setMostrar, EnviarServico, Projeto}) {
                 <input type="number" name="custo" id="ServCusto" />
                 <label htmlFor="ServDescri">Descrição</label>
                 <input type="text" name="descricao" id="ServDescri" maxLength="100" />
-                <button type="submit">Cadastrar Serviço</button>
+                <label htmlFor="ServPrazo">Prazo de Entrega</label>
+                <input type="date" name="prazo" id="ServPrazo" />
+                <button type="submit">Cadastrar Projeto</button>
         </form>
         </>
     )

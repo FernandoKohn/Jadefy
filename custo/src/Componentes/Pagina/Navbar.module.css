@@ -1,30 +1,42 @@
 .Navbar {
-    width: 100vw;
-    height: 100px;
-    color: crimson;
+    width: 31vw;
+    border-radius: 10px;
+    margin-left: 5%;
+    margin-top: 1%;
+    height: 80px;
+    color: var(--deepblue);
     display: flex;
-    background-color: #EAEEF4;
+    background-color: #E4E8EE;
     align-items: center;
 }
 
-.Navbar h1 {
-    padding-left: 2% ;
-}
-
-
-
 .Logo {
-    width: 5%;
+   padding-left: 5%;
+   padding-right: 2%;
 }
 
 .Navigation {
-    background-color: blue;
     display: flex;
-    padding-top: 10px;
+    padding-top: 5px;
     margin: 0;
     width: 400px;
-    gap: 50px;
-    background-color: #EAEEF4;
-    justify-content: center;
-    align-items: center;
+    gap: 30px;
+    background-color: #E4E8EE;
+    margin-left: 40px;
+    
+}
+
+
+.li {
+    color: var(--deepblue);
+}
+
+.li span {
+    padding: 5px;
+}
+
+.li span:hover {
+    box-shadow: inset 0 -0.8em 0 0 var(--forestgreen);
+    color: var(--charcoalgray);
+    transition: 0.5s;
 }

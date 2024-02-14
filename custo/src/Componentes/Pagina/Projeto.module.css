@@ -15,9 +15,10 @@
 .projetoSection {
     display: flex;
     flex-direction: column;
-    width: 35%;
+    width: 38%;
     height: 770px;
     padding: 2%;
+    padding-bottom: 10px;
     gap: 30px;
     background-color: #34495e09;
     border-radius: 10px 10px 0px 0px;
@@ -42,13 +43,27 @@
     justify-content: center;
 }
 
+.CriarServico {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    background-color: rgba(128, 128, 128, 0.363);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .Projetos {
     display: flex;
     flex-direction: column;
     width: 100%;
-    gap: 13px;
+    height: 100%;
+    gap: 25px;
+    padding-bottom: 8px;
     overflow-y: scroll;
-    scroll-padding: 20px;
+    align-items: center;
 }
 
 .ProjetoCard {
@@ -231,5 +246,6 @@
     top: 0;
     left: 0;
     background-color: var(--deepblue);
-    
 }
+
+

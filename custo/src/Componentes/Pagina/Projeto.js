@@ -73,6 +73,7 @@ function Projeto() {
             .then(resp => resp.json())
             .then((data) => {
                 setProjetos(projetos.filter((projeto) => projeto.id !== id))
+                setServicos([])
             })
             .catch(err => console.log(err))
     }
@@ -167,6 +168,7 @@ function Projeto() {
         setMostrar2(!mostrar2)
     }
 
+  
 
 
     return (
@@ -222,9 +224,7 @@ function Projeto() {
                 <div className={styles.ServicosSection}>
                     <div className={styles.Header2}>
                         <h1>Serviços</h1>
-                        {projetoServicoId && (
-                            <button className={styles.btn} onClick={mostrarCriar2}>Criar Serviço</button>
-                        )}
+                        {projetoServicoId ?  <button className={styles.btn} onClick={mostrarCriar2}>Criar Serviço</button> : <span>Selecione projeto para ver serviços</span>}
                     </div>
                     <div className={styles.Servicos}>
                         {servicos.length > 0 && servicos.map((servico) => (

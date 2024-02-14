@@ -1,45 +1,116 @@
-.Formulario {
+.ServicoSection {
     width: 1200px;
     height: 800px;
-    background-color:  #FFFFFF;
+    background-color: #FFFFFF;
     border-radius: 15px;
     display: flex;
-    flex-direction: column;
-    padding: 20px;
-    gap: 30px;
-    
+    position: relative;
+
 }
 
-
-.Formulario input {
-    width: 300px;
-    height: 50px;
-    font-size: 1.1em;
-    margin-left: 40px;
-}
-
-.Formulario label {
-    font-size: 1.4em;
+.Div1 {
+    width: 35%;
+    background-color: var(--charcoalgray);
+    border-radius: 15px 0 0 15px;
     display: flex;
-    margin-left: 40px;
+
 }
 
-
-.Formulario button {
-    width: 120px;
-    align-self: center;
+.Banner {
+    border-radius: 10px 0px 0px 10px;
 }
 
-.FormHeader{
+.Div2 {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    background-color: #E4E8EE;
+}
+
+.FormHeader {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+}
+
+.FormHeader {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.Formulario i {
-    font-size: 3em;
+.FormHeader p {
+    color: #001f3f6e;
 }
 
-form button {
-    margin-top: 5em;
+.Formulario {
+    height: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
+
+.Formulario input {
+    width: 310px;
+    height: 50px;
+    font-size: 1.1em;
+    border-radius: 5px;
+    border: none;
+}
+    
+.Formulario input::-webkit-outer-spin-button,
+.Formulario input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.Formulario input::placeholder {
+    color: #001f3f41;
+    padding-left: 10px;
+}
+
+.Formulario label {
+    font-size: 1.4em;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+
+.Row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.Row div {
+    width: 100%;
+    padding-left: 5%;
+}
+
+.Botoes {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.btn,
+.btn2 {
+    width: 240px;
+    height: 60px;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid var(--charcoalgray);
+    color: var(--charcoalgray);
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    margin-top: 40px;
+    cursor: pointer;
+}
+
+

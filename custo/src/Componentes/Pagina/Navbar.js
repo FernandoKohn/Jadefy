@@ -9,7 +9,6 @@ function Navbar() {
             <ul className={styles.Navigation}>
                 <Link className={styles.li} to="/"><span>Home</span></Link>
                 <Link className={styles.li} to="/Projeto"><span>Projeto</span></Link>
-                <Link className={styles.li} to="/Sobre"><span>Sobre</span></Link>
             </ul>
 
         </div>

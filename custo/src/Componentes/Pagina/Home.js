@@ -9,17 +9,18 @@ import imagem5 from "../../img/d.png"
 function Home() {
     return (
         <div className={styles.home}>
-            <div className={styles.divEsquerda}>
-                <h1>Gerenciar seu negócio nunca foi</h1>
-                <h1>tão <span className={styles.facil}>simples.</span></h1>
-                <p>Otimize seus projetos, maximize resultados. Faça acontecer com nosso <br/> gerenciador de projetos.</p>
-                <Link to="/Projeto">
-                <button className={styles.btn}>Criar Projeto</button>
-                </Link>
-            </div>
-            <div className={styles.divDireita}>
-                <img src={imagem5} alt="Logo Home" className={styles.imagem} />
-            </div>
+
+                <div className={styles.divEsquerda}>
+                    <h1>Gerenciar seu negócio nunca foi</h1>
+                    <h1>tão <span className={styles.facil}>simples.</span></h1>
+                    <p>Otimize seus projetos, maximize resultados. Faça acontecer com nosso <br /> gerenciador de projetos.</p>
+                    <Link to="/Projeto">
+                        <button className={styles.btn}>Criar Projeto</button>
+                    </Link>
+                </div>
+                <div className={styles.divDireita}>
+                    <img src={imagem5} alt="Logo Home" className={styles.imagem} />
+                </div>
         </div>
     )
 }

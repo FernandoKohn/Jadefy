@@ -1,5 +1,5 @@
 .Navbar {
-    width: 31vw;
+    width: 25vw;
     border-radius: 10px;
     margin-left: 5%;
     margin-top: 1%;
@@ -18,12 +18,9 @@
 .Navigation {
     display: flex;
     padding-top: 5px;
-    margin: 0;
-    width: 400px;
     gap: 30px;
     background-color: #E4E8EE;
     margin-left: 40px;
-    
 }
 
 

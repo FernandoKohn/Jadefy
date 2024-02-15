@@ -19,6 +19,7 @@ function Projeto() {
     const [loading, setLoading] = useState(true) // Loading
     const [mensagem, setMensagem] = useState('') // Mensagem de erro ou sucesso
     const [mensagemTipo, setMensagemTipo] = useState('') // Tipo da mensagem
+    const [scroll, setScroll] = useState('') 
 
 
 
@@ -97,11 +98,15 @@ function Projeto() {
 
     //Envia serviços criados
     function EnviarServico(novoProjeto) {
+
+        // Adiciona id ao ultimo serviço
         var ultimoservico = novoProjeto.servicos[novoProjeto.servicos.length - 1]
         ultimoservico.id = uuidv4()
         var custoServico = parseFloat(ultimoservico.custo)
         var projetoOrcamento = parseFloat(projetoServico.orcamento)
         var novoCusto = parseFloat(novoProjeto.custo) + custoServico
+
+        // Faz a relação da data criada e prazo
         var dataInicial = new Date()
         var dataFormatada = dataInicial.toLocaleDateString()
         var dataFormatada2 = new Date(`${novoProjeto.servicos[novoProjeto.servicos.length -1].prazo}`)
@@ -109,7 +114,7 @@ function Projeto() {
         novoProjeto.servicos[novoProjeto.servicos.length -1].criado = dataFormatada
         novoProjeto.servicos[novoProjeto.servicos.length -1].prazo = dataFinal
 
-
+        // Checa budget do projeto
         if (custoServico > projetoOrcamento || novoCusto > projetoOrcamento) {
             window.alert("O custo do seu serviço ultrapassa o orçamento")
             novoProjeto.servicos.pop()
@@ -127,7 +132,7 @@ function Projeto() {
         })
             .then(resp => resp.json())
             .then((data) => {
-                setMostrar(false)
+                setMostrar2(!mostrar2)
                 setServicos(data.servicos)
             })
             .catch(err => console.log(err))
@@ -204,11 +209,11 @@ function Projeto() {
                     )}
                     <div className={styles.Projetos}>
                         {projetos.length > 0 && projetos.map((projeto) => (
-                            <div className={styles.ProjetoCard} key={projeto.id}>
+                            <div className={styles.ProjetoCard} key={projeto.id}> 
                                 <div className={styles.projetoHeader}>
                                     <h1>{projeto.nome}</h1>
                                     <div className={styles.Icones}>
-                                        <i class='bx bx-search-alt-2' id={projeto.id} onClick={fetchServicos}></i>
+                                        <button className={styles.btnProjeto} onClick={fetchServicos} id={projeto.id}>Selecionar</button>
                                         <i className='bx bx-x' id={projeto.id} onClick={removerProjeto}></i>
                                     </div>
                                 </div>

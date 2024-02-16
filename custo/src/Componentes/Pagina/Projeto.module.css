@@ -63,7 +63,7 @@
     gap: 25px;
     padding-bottom: 8px;
     overflow-y: scroll;
-    
+
 }
 
 .ProjetoCard {
@@ -158,17 +158,19 @@
 .btn {
     width: 150px;
     height: 40px;
-    display: inline-block;
-    padding: 10px 20px;
+    display: flex;
     font-size: 16px;
     font-weight: bold;
-    text-align: center;
     text-decoration: none;
     border: 2px solid var(--charcoalgray);
     color: var(--charcoalgray);
     border-radius: 5px;
     transition: background-color 0.3s, color 0.3s;
     cursor: pointer;
+    margin-right: 10px;
+    padding: 5px 10px;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -265,4 +267,47 @@
     top: 0;
     left: 0;
     background-color: var(--deepblue);
+}
+
+@media screen and (max-width: 1000px) {
+    .Projeto {
+        overflow: visible;
+        overflow-x: hidden;
+    }
+
+    .Conteudo {
+        width: 100%;
+        padding: 2%;
+        flex-direction: column;
+    }
+
+    .Projeto h1 {
+        font-size: 1.4em;
+    }
+
+    .Projeto p {
+        font-size: 1.0em;
+    }
+
+    .projetoSection {
+        width: 100%;
+    }
+
+    .Projetos::-webkit-scrollbar {
+        display: none;
+    }
+
+    .btn {
+        width: 120px;
+        font-size: 0.8em;
+        margin-right: 10px;
+        padding: 5px 10px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .ServicosSection {
+        width: 100%;
+    }
+
 }

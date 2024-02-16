@@ -19,7 +19,6 @@ function Projeto() {
     const [loading, setLoading] = useState(true) // Loading
     const [mensagem, setMensagem] = useState('') // Mensagem de erro ou sucesso
     const [mensagemTipo, setMensagemTipo] = useState('') // Tipo da mensagem
-    const [scroll, setScroll] = useState('') 
 
 
 
@@ -132,7 +131,7 @@ function Projeto() {
         })
             .then(resp => resp.json())
             .then((data) => {
-                setMostrar2(!mostrar2)
+                setMostrar2(false)
                 setServicos(data.servicos)
             })
             .catch(err => console.log(err))
@@ -234,6 +233,9 @@ function Projeto() {
                     <div className={styles.Servicos}>
                         {servicos.length > 0 && servicos.map((servico) => (
                             <div className={styles.ServicoCard} key={servico.id} >
+                                <header className={styles.ServicoHeader}>
+
+                                </header>
                                 <h1>{servico.nome}</h1>
                                 <p>Custo do serviço: {servico.custo}</p>
                                 <p>Descrição: {servico.descricao}</p>

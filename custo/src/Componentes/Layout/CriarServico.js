@@ -1,5 +1,6 @@
 import styles from "./CriarServico.module.css"
 import banner1 from "../../img/banner1.png"
+import banner2 from "../../img/banner3.png"
 
 function CriarServico({ setMostrar, EnviarServico, Projeto }) {
 
@@ -16,6 +17,7 @@ function CriarServico({ setMostrar, EnviarServico, Projeto }) {
         <div className={styles.ServicoSection}>
             <div className={styles.Div1}>
                 <img src={banner1} alt="banner" className={styles.Banner} />
+                <img src={banner2} alt="banner" className={styles.Banner1100} />
             </div>
             <div className={styles.Div2}>
                 <header className={styles.FormHeader}>
@@ -26,17 +28,17 @@ function CriarServico({ setMostrar, EnviarServico, Projeto }) {
                     <div className={styles.Row}>
                         <div>
                             <label htmlFor="ServNome">Nome do Serviço</label>
-                            <input type="text" name="nome" id="ServNome" maxLength="20" placeholder="Insira o nome do serviço" required/>
+                            <input type="text" name="nome" id="ServNome" maxLength="20" placeholder="Insira o nome do serviço" required />
                         </div>
                         <div>
                             <label htmlFor="ServCusto">Custo do Serviço</label>
-                            <input type="number" name="custo" id="ServCusto" max="1000000000" placeholder="Insira o custo do serviço"/>
+                            <input type="number" name="custo" id="ServCusto" max="1000000000" placeholder="Insira o custo do serviço" />
                         </div>
                     </div>
                     <div className={styles.Row}>
                         <div>
                             <label htmlFor="ServDescri">Descrição</label>
-                            <input type="text" name="descricao" id="ServDescri" maxLength="40" placeholder="Descreva o serviço" required/>
+                            <input type="text" name="descricao" id="ServDescri" maxLength="40" placeholder="Descreva o serviço" required />
                         </div>
                         <div>
                             <label htmlFor="ServPrazo">Prazo de Entrega</label>

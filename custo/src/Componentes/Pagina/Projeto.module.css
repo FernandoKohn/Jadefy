@@ -36,7 +36,7 @@
     top: 0;
     z-index: 1;
     background-color: rgba(128, 128, 128, 0.363);
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     display: flex;
     align-items: center;
@@ -216,6 +216,18 @@
     justify-content: space-between;
 }
 
+.Header2 div {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--deepblue);
+}
+
+.Header2 div p {
+    padding-top: 5px;
+    font-size: 1em;
+}
+
 .Servicos {
     display: flex;
     flex-direction: column;
@@ -234,7 +246,7 @@
     display: flex;
     flex-direction: column;
     text-align: start;
-    border-radius: 20px;
+    border-radius: 10px 20px 20px 10px;
     padding: 20px 10px 10px 30px;
     position: relative;
 }
@@ -269,6 +281,8 @@
     background-color: var(--deepblue);
 }
 
+
+
 @media screen and (max-width: 1000px) {
     .Projeto {
         overflow: visible;
@@ -291,6 +305,7 @@
 
     .projetoSection {
         width: 100%;
+        border-radius: 10px;
     }
 
     .Projetos::-webkit-scrollbar {
@@ -308,6 +323,11 @@
 
     .ServicosSection {
         width: 100%;
+        border-radius: 10px;
     }
 
+}
+
+@media screen and (max-width: 700px) {
+   
 }

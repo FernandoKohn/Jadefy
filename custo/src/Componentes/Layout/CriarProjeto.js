@@ -1,6 +1,7 @@
 import { useState } from "react"
 import styles from "./CriarProjeto.module.css"
 import banner1 from "../../img/banner1.png"
+import banner2 from "../../img/banner3.png"
 
 
 
@@ -17,7 +18,8 @@ function CriarProjeto({ mudarEstado, enviarProjeto }) {
 
         <div className={styles.FormularioSection}>
             <div className={styles.Div1}>
-                <img src={banner1} alt="banner" className={styles.Banner} />
+            <img src={banner1} alt="banner" className={styles.Banner} />
+            <img src={banner2} alt="banner" className={styles.Banner1100} />
             </div>
             <div className={styles.Div2}>
                 <header className={styles.FormHeader}>

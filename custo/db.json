@@ -38,9 +38,17 @@
           "prazo": "25/02/2024",
           "id": "e93d6285-d5f7-4e38-9a59-3dc5bf42792f",
           "criado": "16/02/2024"
+        },
+        {
+          "nome": "Teste",
+          "custo": "2",
+          "descricao": "Teste",
+          "prazo": "06/02/2024",
+          "id": "820de4ab-20d9-4414-a7f3-07ab3d73d2d9",
+          "criado": "19/02/2024"
         }
       ],
-      "custo": 29
+      "custo": 31
     },
     {
       "id": "0405",

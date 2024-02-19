@@ -15,6 +15,7 @@ function Projeto() {
     const [projetos, setProjetos] = useState([]) // Todos os projetos
     const [projetoServico, setprojetoServico] = useState([]) // Projeto do serviço escolhido
     const [projetoServicoId, setprojetoServicoId] = useState() // Id do projeto do serviço escolhido 
+    const [projetoNome, setProjetoNome] = useState("")
     const [servicos, setServicos] = useState([]) // Serviços do projeto escolhido
     const [loading, setLoading] = useState(true) // Loading
     const [mensagem, setMensagem] = useState('') // Mensagem de erro ou sucesso
@@ -172,6 +173,10 @@ function Projeto() {
         setMostrar2(!mostrar2)
     }
 
+    function setNome(nome) {
+        setProjetoNome(nome)
+    }
+
   
 
 
@@ -212,7 +217,7 @@ function Projeto() {
                                 <div className={styles.projetoHeader}>
                                     <h1>{projeto.nome}</h1>
                                     <div className={styles.Icones}>
-                                        <button className={styles.btnProjeto} onClick={fetchServicos} id={projeto.id}>Selecionar</button>
+                                        <button className={styles.btnProjeto} onClick={fetchServicos} id={projeto.id} onMouseDown={() => setNome(projeto.nome)}>Selecionar</button>
                                         <i className='bx bx-x' id={projeto.id} onClick={removerProjeto}></i>
                                     </div>
                                 </div>
@@ -227,15 +232,17 @@ function Projeto() {
                 </div>
                 <div className={styles.ServicosSection}>
                     <div className={styles.Header2}>
-                        <h1>Serviços</h1>
+                        <div>
+                            <h1>Serviços</h1>
+                            {projetoNome !== "" && (
+                                <p>Projeto Selecionado: {projetoNome}</p>
+                            )}
+                        </div>
                         {projetoServicoId ?  <button className={styles.btn} onClick={mostrarCriar2}>Criar Serviço</button> : <span>Selecione projeto para ver serviços</span>}
                     </div>
                     <div className={styles.Servicos}>
                         {servicos.length > 0 && servicos.map((servico) => (
                             <div className={styles.ServicoCard} key={servico.id} >
-                                <header className={styles.ServicoHeader}>
-
-                                </header>
                                 <h1>{servico.nome}</h1>
                                 <p>Custo do serviço: {servico.custo}</p>
                                 <p>Descrição: {servico.descricao}</p>

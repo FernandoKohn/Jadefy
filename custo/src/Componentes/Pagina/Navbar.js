@@ -1,15 +1,41 @@
 import styles from "./Navbar.module.css"
-import { Link } from "react-router-dom" 
-import logo from "../../img/logo4.png"
+import { Link } from "react-router-dom"
+import { useState } from "react"
+import { Animated } from "react-animated-css"
+
+
 function Navbar() {
+
+    const [style1, setStyle1] = useState("menu")
+    const [style2, setStyle2] = useState("popUp")
+
+    function toggle() {
+        setStyle1("menuOff")
+        setStyle2("popUpShown")
+    }
+
+    function toggleOff() {
+        setStyle1("menu")
+        setStyle2("popUp")
+    }
+
     return (
-        <div className={styles.Navbar}>
-            <img src={logo} className={styles.Logo} alt="Logo"/>
-            <h1>Custo</h1>
-            <ul className={styles.Navigation}>
-                <Link className={styles.li} to="/"><span>Home</span></Link>
-                <Link className={styles.li} to="/Projeto"><span>Projeto</span></Link>
-            </ul>
+        <div className={styles.navbar}>
+            <div onClick={toggle} className={`${styles[style1]}`}>
+                <i class='bx bx-menu' id={styles.hamburguer}></i>
+            </div>
+            <Animated animationIn="fadeInLeft" animationOut="fadeOut" isVisible={true} className={`${styles[style2]}`}>             
+                    <header>
+                        <h1>ProGrid</h1>
+                        <i class='bx bx-x' onClick={toggleOff}></i>
+                    </header>
+                    <Link to={"/"}>
+                        <div className={styles.row}>
+                            <i class='bx bx-home' ></i>
+                            <p>Home</p>
+                        </div>
+                    </Link>
+            </Animated>
 
         </div>
     )

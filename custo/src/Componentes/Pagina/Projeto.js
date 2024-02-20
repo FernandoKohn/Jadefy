@@ -5,7 +5,8 @@ import CriarProjeto from "../Layout/CriarProjeto"
 // import EditarProjeto from "../Layout/EditarProjeto"
 // import { Link } from 'react-router-dom'
 import CriarServico from "../Layout/CriarServico"
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';    
+import {Animated} from "react-animated-css";
 
 
 function Projeto() {
@@ -182,7 +183,7 @@ function Projeto() {
 
     return (
         <div className={styles.Projeto}>
-            <Navbar />
+            <Navbar/>
             {mostrar1 && (
                 <div className={styles.CriarProjeto}>
                     <CriarProjeto enviarProjeto={enviarProjeto} mudarEstado={mostrarCriar} />
@@ -194,64 +195,68 @@ function Projeto() {
                 </div>
             )}
             <div className={styles.Conteudo}>
-                <div className={styles.projetoSection}>
-                    <div className={styles.Header}>
-                        <h1>Meus projetos</h1>
-                        <button onClick={mostrarCriar} className={styles.btn}>Criar Projeto</button>
-                    </div>
-                    {loading && (
-                        <div className={styles.Loading}>
-                            <p>Carregando projetos</p>
-                            <i class='bx bx-loader-circle bx-tada' ></i>
+                <Animated className={styles.projetoSection} animationIn="fadeInUp" animationOut="fadeOut" isVisible={true}>
+                    
+                        <div className={styles.Header}>
+                            <h1>Meus projetos</h1>
+                            <button onClick={mostrarCriar} className={styles.btn}>Criar Projeto</button>
                         </div>
-                    )}
-                    {mensagemTipo == 'error' && (
-                        <div className={styles.ErrorDiv}>
-                            <p className={styles[mensagemTipo]}>{mensagem}</p>
-                            <i class='bx bx-revision' onClick={refreshpage}></i>
-                        </div>
-                    )}
-                    <div className={styles.Projetos}>
-                        {projetos.length > 0 && projetos.map((projeto) => (
-                            <div className={styles.ProjetoCard} key={projeto.id}> 
-                                <div className={styles.projetoHeader}>
-                                    <h1>{projeto.nome}</h1>
-                                    <div className={styles.Icones}>
-                                        <button className={styles.btnProjeto} onClick={fetchServicos} id={projeto.id} onMouseDown={() => setNome(projeto.nome)}>Selecionar</button>
-                                        <i className='bx bx-x' id={projeto.id} onClick={removerProjeto}></i>
+                        {loading && (
+                            <div className={styles.Loading}>
+                                <p>Carregando projetos</p>
+                                <i class='bx bx-loader-circle bx-tada' ></i>
+                            </div>
+                        )}
+                        {mensagemTipo == 'error' && (
+                            <div className={styles.ErrorDiv}>
+                                <p className={styles[mensagemTipo]}>{mensagem}</p>
+                                <i class='bx bx-revision' onClick={refreshpage}></i>
+                            </div>
+                        )}
+                        <div className={styles.Projetos}>
+                            {projetos.length > 0 && projetos.map((projeto) => (
+                                <div className={styles.ProjetoCard} key={projeto.id}>
+                                    <div className={styles.projetoHeader}>
+                                        <h1>{projeto.nome}</h1>
+                                        <div className={styles.Icones}>
+                                            <button className={styles.btnProjeto} onClick={fetchServicos} id={projeto.id} onMouseDown={() => setNome(projeto.nome)}>Selecionar</button>
+                                            <i className='bx bx-x' id={projeto.id} onClick={removerProjeto}></i>
+                                        </div>
                                     </div>
+                                    <p>Tipo:<span className={styles.Span1}>{projeto.tipo}</span></p>
+                                    <p>Orçamento: <span className={styles.Span2}>{projeto.orcamento}</span></p>
+                                    <p>Prazo de entrega: <span className={styles.Span3}>{projeto.prazo}</span></p>
                                 </div>
-                                <p>Tipo:<span className={styles.Span1}>{projeto.tipo}</span></p>
-                                <p>Orçamento: <span className={styles.Span2}>{projeto.orcamento}</span></p>
-                                <p>Prazo de entrega: <span className={styles.Span3}>{projeto.prazo}</span></p>
-                            </div>
-                        )
-                        )
-                        }
-                    </div>
-                </div>
-                <div className={styles.ServicosSection}>
-                    <div className={styles.Header2}>
-                        <div>
-                            <h1>Serviços</h1>
-                            {projetoNome !== "" && (
-                                <p>Projeto Selecionado: {projetoNome}</p>
-                            )}
+                            )
+                            )
+                            }
                         </div>
-                        {projetoServicoId ?  <button className={styles.btn} onClick={mostrarCriar2}>Criar Serviço</button> : <span>Selecione projeto para ver serviços</span>}
-                    </div>
-                    <div className={styles.Servicos}>
-                        {servicos.length > 0 && servicos.map((servico) => (
-                            <div className={styles.ServicoCard} key={servico.id} >
-                                <h1>{servico.nome}</h1>
-                                <p>Custo do serviço: {servico.custo}</p>
-                                <p>Descrição: {servico.descricao}</p>
-                                <p>{servico.criado} - {servico.prazo}</p>
-                                <i className='bx bx-x' onClick={() => removerServico(servico.id, servico.custo)}></i>
+                   
+                </Animated>
+                <Animated animationIn="fadeInUp" animationOut="fadeOut" isVisible={true} className={styles.ServicosSection}>
+                   
+                        <div className={styles.Header2}>
+                            <div>
+                                <h1>Serviços</h1>
+                                {projetoNome !== "" && (
+                                    <p>Projeto Selecionado: {projetoNome}</p>
+                                )}
                             </div>
-                        ))}
-                    </div>
-                </div>
+                            {projetoServicoId ?  <button className={styles.btn} onClick={mostrarCriar2}>Criar Serviço</button> : <span>Selecione projeto para ver serviços</span>}
+                        </div>
+                        <div className={styles.Servicos}>
+                            {servicos.length > 0 && servicos.map((servico) => (
+                                <div className={styles.ServicoCard} key={servico.id} >
+                                    <h1>{servico.nome}</h1>
+                                    <p>Custo do serviço: {servico.custo}</p>
+                                    <p>Descrição: {servico.descricao}</p>
+                                    <p>{servico.criado} - {servico.prazo}</p>
+                                    <i className='bx bx-x' onClick={() => removerServico(servico.id, servico.custo)}></i>
+                                </div>
+                            ))}
+                        </div>
+                   
+                </Animated>
             </div>
         </div>
     )

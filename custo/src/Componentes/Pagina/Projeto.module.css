@@ -1,11 +1,24 @@
+.topo {
+    position: absolute;
+    top: 0;
+}
+
 .Projeto {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    overflow: hidden;
+}
+
+
+.ProjetoScrollLock {
     position: relative;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
     background-color: white;
 }
-
 
 .Conteudo {
     display: flex;
@@ -18,7 +31,7 @@
     display: flex;
     flex-direction: column;
     width: 38%;
-    height: 790px;
+    height: 830px;
     padding: 2%;
     padding-bottom: 10px;
     gap: 30px;
@@ -46,6 +59,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
 }
 
 .CriarServico {
@@ -192,7 +206,7 @@
     display: flex;
     flex-direction: column;
     width: 65%;
-    height: 790px;
+    height: 830px;
     padding: 2%;
     gap: 30px;
     background-color: #34495e2a;
@@ -275,6 +289,7 @@
 
 
 @media screen and (max-width: 1000px) {
+
     .Projeto {
         overflow: visible;
         overflow-x: hidden;
@@ -283,6 +298,7 @@
     .Conteudo {
         width: 100%;
         padding: 2%;
+        margin-top: 10%;
         flex-direction: column;
     }
 
@@ -317,8 +333,14 @@
         border-radius: 10px;
     }
 
+
 }
 
-@media screen and (max-width: 700px) {
-   
+
+@media (width <= 470px) {
+
+    .Conteudo {
+        margin-top: 20%;
+    }
+
 }

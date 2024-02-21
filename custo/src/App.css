@@ -4,19 +4,12 @@
   src: url("../fonts/Articulat\ CF\ Medium.otf");
 }
 
-* {
-  font-family: "Articulate";
-  text-decoration: none;
-  font-weight: lighter;
-  box-sizing: border-box;
-}
-
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--charcoalgray);
+  background-color: #003A33;
   border-radius: 4px;
 }
 
@@ -26,11 +19,10 @@
 }
 
 :root {
-  --deepblue: #001F3F;
-  --forestgreen: #2ECC71;
-  --charcoalgray: #34495E;
-  --gold: #FFD700;
-  --white: #FFFFFF;
+  --background: #003A33;
+  --yellow: #E8FF8B;
+  --green: #003A33;
+  --text: #013829;
 }
 
 h1  {

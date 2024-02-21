@@ -1,10 +1,8 @@
 import styles from "./Projeto.module.css"
 import Navbar from "./Navbar"
-import { useEffect, useState } from "react"
 import CriarProjeto from "../Layout/CriarProjeto"
-// import EditarProjeto from "../Layout/EditarProjeto"
-// import { Link } from 'react-router-dom'
 import CriarServico from "../Layout/CriarServico"
+import { useEffect, useState, useRef } from "react"
 import { v4 as uuidv4 } from 'uuid';    
 import {Animated} from "react-animated-css";
 
@@ -21,7 +19,8 @@ function Projeto() {
     const [loading, setLoading] = useState(true) // Loading
     const [mensagem, setMensagem] = useState('') // Mensagem de erro ou sucesso
     const [mensagemTipo, setMensagemTipo] = useState('') // Tipo da mensagem
-
+    const [projetoEstilo, setprojetoEstilo] =useState('Projeto') // Estilo dinamico da div principal
+    const topo = useRef()
 
 
     // Pega todos os projetos
@@ -178,28 +177,37 @@ function Projeto() {
         setProjetoNome(nome)
     }
 
+    function setEstilo() {
+        topo.current.scrollIntoView()
+        setprojetoEstilo("ProjetoScrollLock")   
+    }
+
+    function setEstilo2() {
+        setprojetoEstilo("Projeto")
+    }
   
 
 
     return (
-        <div className={styles.Projeto}>
+        <div className={`${styles[projetoEstilo]}`} >
+            <div ref={topo}  className={styles.topo}></div>
             <Navbar/>
             {mostrar1 && (
                 <div className={styles.CriarProjeto}>
-                    <CriarProjeto enviarProjeto={enviarProjeto} mudarEstado={mostrarCriar} />
+                    <CriarProjeto enviarProjeto={enviarProjeto} mudarEstado={mostrarCriar} setEstilo2={setEstilo2} />
                 </div>
             )}
             {mostrar2 && (
                 <div className={styles.CriarServico}>
-                    <CriarServico setMostrar={mostrarCriar2} EnviarServico={EnviarServico} Projeto={projetoServico} />
+                    <CriarServico setMostrar={mostrarCriar2} EnviarServico={EnviarServico} Projeto={projetoServico} setEstilo2={setEstilo2} />
                 </div>
             )}
             <div className={styles.Conteudo}>
                 <Animated className={styles.projetoSection} animationIn="fadeInUp" animationOut="fadeOut" isVisible={true}>
                     
-                        <div className={styles.Header}>
-                            <h1>Meus projetos</h1>
-                            <button onClick={mostrarCriar} className={styles.btn}>Criar Projeto</button>
+                        <div className={styles.Header} >
+                            <h1  >Meus projetos</h1>
+                            <button onClick={() => {mostrarCriar();setEstilo()}} className={styles.btn}>Criar Projeto</button>
                         </div>
                         {loading && (
                             <div className={styles.Loading}>
@@ -242,7 +250,7 @@ function Projeto() {
                                     <p>Projeto Selecionado: {projetoNome}</p>
                                 )}
                             </div>
-                            {projetoServicoId ?  <button className={styles.btn} onClick={mostrarCriar2}>Criar Serviço</button> : <span>Selecione projeto para ver serviços</span>}
+                            {projetoServicoId ?  <button className={styles.btn} onClick={() => {mostrarCriar2(); setEstilo()}}>Criar Serviço</button> : <span>Selecione projeto para ver serviços</span>}
                         </div>
                         <div className={styles.Servicos}>
                             {servicos.length > 0 && servicos.map((servico) => (

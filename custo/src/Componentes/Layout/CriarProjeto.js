@@ -1,12 +1,12 @@
 import { useState } from "react"
 import styles from "./CriarProjeto.module.css"
-import banner1 from "../../img/banner1.png"
-import banner2 from "../../img/banner3.png"
+import banner1 from "../../img/Banner_ProGrid.png"
+import banner2 from "../../img/Banner2_ProGrid.png"
 
 
 
 
-function CriarProjeto({ mudarEstado, enviarProjeto }) {
+function CriarProjeto({ mudarEstado, enviarProjeto, setEstilo2 }) {
 
     function setarForm(event) {
         var data = new FormData(event.target)
@@ -19,7 +19,6 @@ function CriarProjeto({ mudarEstado, enviarProjeto }) {
         <div className={styles.FormularioSection}>
             <div className={styles.Div1}>
             <img src={banner1} alt="banner" className={styles.Banner} />
-            <img src={banner2} alt="banner" className={styles.Banner1100} />
             </div>
             <div className={styles.Div2}>
                 <header className={styles.FormHeader}>
@@ -48,7 +47,7 @@ function CriarProjeto({ mudarEstado, enviarProjeto }) {
                         </div>
                     </div>
                     <div className={styles.Botoes}>
-                        <button type="submit" className={styles.btn} onClick={mudarEstado}>Voltar</button>
+                        <button type="submit" className={styles.btn} onClick={() => {mudarEstado();setEstilo2()}}>Voltar</button>
                         <button type="submit" className={styles.btn2}>Cadastrar Projeto</button>
                     </div>
                 </form>

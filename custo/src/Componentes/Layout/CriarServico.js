@@ -1,8 +1,8 @@
 import styles from "./CriarServico.module.css"
-import banner1 from "../../img/banner1.png"
-import banner2 from "../../img/banner3.png"
+import banner1 from "../../img/Banner_ProGrid.png"
+import banner2 from "../../img/Banner2_ProGrid.png"
 
-function CriarServico({ setMostrar, EnviarServico, Projeto }) {
+function CriarServico({ setMostrar, EnviarServico, Projeto, setEstilo2 }) {
 
     function setarForm(event) {
         event.preventDefault()
@@ -17,7 +17,6 @@ function CriarServico({ setMostrar, EnviarServico, Projeto }) {
         <div className={styles.ServicoSection}>
             <div className={styles.Div1}>
                 <img src={banner1} alt="banner" className={styles.Banner} />
-                <img src={banner2} alt="banner" className={styles.Banner1100} />
             </div>
             <div className={styles.Div2}>
                 <header className={styles.FormHeader}>
@@ -46,7 +45,8 @@ function CriarServico({ setMostrar, EnviarServico, Projeto }) {
                         </div>
                     </div>
                     <div className={styles.Botoes}>
-                        <button type="submit" className={styles.btn} onClick={setMostrar}>Voltar</button>
+
+                        <button type="submit" className={styles.btn} onClick={() => {setMostrar();setEstilo2();}}>Voltar</button>
                         <button type="submit" className={styles.btn2}>Cadastrar Serviço</button>
                     </div>
                 </form>

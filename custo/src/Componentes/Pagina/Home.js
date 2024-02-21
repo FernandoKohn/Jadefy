@@ -4,7 +4,6 @@ import gif1 from "../../img/gif1.gif"
 import gif2 from "../../img/gif2.gif"
 import Typed from "typed.js";
 import { useRef, useEffect } from "react";
-import banner from "../../img/banner5.png"
 
 
 function Home() {

@@ -5,12 +5,11 @@
     border-radius: 15px;
     display: flex;
     position: relative;
-
 }
 
 .Div1 {
     width: 35%;
-    background-color: var(--charcoalgray);
+    background-color: #003A33;
     border-radius: 15px 0 0 15px;
     display: flex;
 
@@ -20,10 +19,7 @@
     border-radius: 10px 0px 0px 10px;
 }
 
-.Banner1100 {
-    border-radius: 10px 0px 0px 10px;
-    display: none;
-}
+
 
 .Div2 {
     width: 65%;
@@ -43,10 +39,11 @@
     gap: 40px;
     align-items: center;
     justify-content: center;
+    color: #013829;
 }
 
 .FormHeader p {
-    color: #001f3f6e;
+    color: #013829;
 }
 
 .Formulario {
@@ -72,7 +69,7 @@
 }
 
 .Formulario input::placeholder {
-    color: #001f3f41;
+    color: #013829;
     padding-left: 10px;
 }
 
@@ -80,6 +77,7 @@
     font-size: 1.4em;
     display: flex;
     margin-bottom: 10px;
+    color: #013829;
 }
 
 
@@ -100,26 +98,37 @@
     justify-content: space-around;
 }
 
-.btn,
-.btn2 {
-    width: 240px;
-    height: 60px;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    border: 2px solid var(--charcoalgray);
-    color: var(--charcoalgray);
-    border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s;
-    margin-top: 40px;
+.btn, .btn2 {
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    background-color: #003A33;
+    color: white;
+    font-size: 1em;
     cursor: pointer;
+}
+
+
+.btn:hover, .btn2:hover {
+    background-color: #E8FF8B;
+    border-color: var(--forestgreen);
+    color: #013829;
+    transition: 0.5s;
 }
 
 @media screen and (max-width: 1300px) {
     .FormularioSection {
         transform: scale(0.7);
+        width: 1200px;
+    }
+
+    .Div1 {
+        width: 420px;
+    }
+
+    .Div2 {
+        width: 100%;
     }
     
     .Formulario input {
@@ -127,18 +136,8 @@
     }
 }
 
-@media (width <= 1100px) {
 
-    .Banner {
-        display: none;
-    }
-
-    .Banner1100 {
-        display: block;
-    }
-}
-
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 1000px) {
     .FormularioSection {
         transform: scale(1);
         width: 90%;
@@ -146,7 +145,9 @@
 
     .FormHeader {
         height: 25%;
-        background-image: url("../../img/banner4.png");
+        background-image: url("../../img/Banner2_ProGrid.png");
+        background-size: cover;
+        background-repeat: no-repeat;
         border-radius: 10px;
         color: white;
     }

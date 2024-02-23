@@ -286,6 +286,16 @@
     background-color: #003A33;
 }
 
+.search {
+    position: absolute;
+    top:10px;
+    left: 500px;
+    z-index: 99;
+    width: 800px;
+    height: 800px;
+    background-color: #013829;
+}
+
 
 
 @media screen and (max-width: 1000px) {

@@ -5,6 +5,7 @@ import CriarServico from "../Layout/CriarServico"
 import { useEffect, useState, useRef } from "react"
 import { v4 as uuidv4 } from 'uuid';    
 import {Animated} from "react-animated-css";
+import Search from "../Layout/Search"
 
 
 function Projeto() {
@@ -190,6 +191,9 @@ function Projeto() {
 
     return (
         <div className={`${styles[projetoEstilo]}`} >
+            <div className={styles.search}>
+                <Search fetchServicos={fetchServicos} setNome={setNome} removerProjeto={removerProjeto}></Search>
+            </div>
             <div ref={topo}  className={styles.topo}></div>
             <Navbar/>
             {mostrar1 && (

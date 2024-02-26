@@ -3,24 +3,34 @@ import Navbar from "./Navbar"
 import CriarProjeto from "../Layout/CriarProjeto"
 import CriarServico from "../Layout/CriarServico"
 import { useEffect, useState, useRef } from "react"
-import { v4 as uuidv4 } from 'uuid';    
-import {Animated} from "react-animated-css";
-import Search from "../Layout/Search"
+import { v4 as uuidv4 } from 'uuid';
+import { Animated } from "react-animated-css";
+
 
 
 function Projeto() {
 
     const [mostrar1, setMostrar] = useState(false) // Toggle criar projeto
     const [mostrar2, setMostrar2] = useState(false) // Toggle criar serviço
+
     const [projetos, setProjetos] = useState([]) // Todos os projetos
     const [projetoServico, setprojetoServico] = useState([]) // Projeto do serviço escolhido
     const [projetoServicoId, setprojetoServicoId] = useState() // Id do projeto do serviço escolhido 
     const [projetoNome, setProjetoNome] = useState("")
+
     const [servicos, setServicos] = useState([]) // Serviços do projeto escolhido
+
     const [loading, setLoading] = useState(true) // Loading
     const [mensagem, setMensagem] = useState('') // Mensagem de erro ou sucesso
     const [mensagemTipo, setMensagemTipo] = useState('') // Tipo da mensagem
-    const [projetoEstilo, setprojetoEstilo] =useState('Projeto') // Estilo dinamico da div principal
+    const [projetoEstilo, setprojetoEstilo] = useState('Projeto') // Estilo dinamico da div principal
+
+    const [querySearch, setQuerySearch] = useState('') // Conteudo pesquisado no search de projetos
+    const [search, setSearch] = useState([]) // Obj com o resultado
+
+    const [querySearch2, setQuerySearch2] = useState('') // Conteudo pesquisado no search de serviços
+    const [search2, setSearch2] = useState([]) // Obj com o resultado
+
     const topo = useRef()
 
 
@@ -110,10 +120,10 @@ function Projeto() {
         // Faz a relação da data criada e prazo
         var dataInicial = new Date()
         var dataFormatada = dataInicial.toLocaleDateString()
-        var dataFormatada2 = new Date(`${novoProjeto.servicos[novoProjeto.servicos.length -1].prazo}`)
+        var dataFormatada2 = new Date(`${novoProjeto.servicos[novoProjeto.servicos.length - 1].prazo}`)
         var dataFinal = dataFormatada2.toLocaleDateString()
-        novoProjeto.servicos[novoProjeto.servicos.length -1].criado = dataFormatada
-        novoProjeto.servicos[novoProjeto.servicos.length -1].prazo = dataFinal
+        novoProjeto.servicos[novoProjeto.servicos.length - 1].criado = dataFormatada
+        novoProjeto.servicos[novoProjeto.servicos.length - 1].prazo = dataFinal
 
         // Checa budget do projeto
         if (custoServico > projetoOrcamento || novoCusto > projetoOrcamento) {
@@ -180,22 +190,46 @@ function Projeto() {
 
     function setEstilo() {
         topo.current.scrollIntoView()
-        setprojetoEstilo("ProjetoScrollLock")   
+        setprojetoEstilo("ProjetoScrollLock")
     }
 
     function setEstilo2() {
         setprojetoEstilo("Projeto")
     }
-  
+
+    const handleSearch = (e) => {
+        const query = e.target.value
+        setQuerySearch(query)
+        const resultado = projetos.filter((res) =>
+            res.nome.includes(query)
+        )
+        setSearch(resultado)
+    }
+
+    const handleSearch2 = (e) => {
+        const query2 = e.target.value
+        setQuerySearch2(query2)
+        const resultado2 = servicos.filter((res) =>
+            res.nome.includes(query2)
+        )
+        setSearch2(resultado2)
+    }
+
+    function removerSearch2(id) {
+        var Id = id
+        const filtro = search2.filter((servico) => 
+            !servico.id.includes(id)
+        )
+        setSearch2(filtro)
+    }
+
 
 
     return (
         <div className={`${styles[projetoEstilo]}`} >
-            <div className={styles.search}>
-                <Search fetchServicos={fetchServicos} setNome={setNome} removerProjeto={removerProjeto}></Search>
-            </div>
-            <div ref={topo}  className={styles.topo}></div>
-            <Navbar/>
+
+            <div ref={topo} className={styles.topo}></div>
+            <Navbar />
             {mostrar1 && (
                 <div className={styles.CriarProjeto}>
                     <CriarProjeto enviarProjeto={enviarProjeto} mudarEstado={mostrarCriar} setEstilo2={setEstilo2} />
@@ -208,25 +242,44 @@ function Projeto() {
             )}
             <div className={styles.Conteudo}>
                 <Animated className={styles.projetoSection} animationIn="fadeInUp" animationOut="fadeOut" isVisible={true}>
-                    
-                        <div className={styles.Header} >
+                    <div className={styles.Header} >
+                        <div>
                             <h1  >Meus projetos</h1>
-                            <button onClick={() => {mostrarCriar();setEstilo()}} className={styles.btn}>Criar Projeto</button>
+                            <button onClick={() => { mostrarCriar(); setEstilo() }} className={styles.btn}>Criar Projeto</button>
                         </div>
-                        {loading && (
-                            <div className={styles.Loading}>
-                                <p>Carregando projetos</p>
-                                <i class='bx bx-loader-circle bx-tada' ></i>
-                            </div>
-                        )}
-                        {mensagemTipo == 'error' && (
-                            <div className={styles.ErrorDiv}>
-                                <p className={styles[mensagemTipo]}>{mensagem}</p>
-                                <i class='bx bx-revision' onClick={refreshpage}></i>
-                            </div>
-                        )}
-                        <div className={styles.Projetos}>
-                            {projetos.length > 0 && projetos.map((projeto) => (
+                        <input type="Text" value={querySearch} onChange={handleSearch} placeholder='Procurar projetos 🔍' className={styles.searchbar}/>
+                    </div>
+                    {loading && (
+                        <div className={styles.Loading}>
+                            <p>Carregando projetos</p>
+                            <i class='bx bx-loader-circle bx-tada' ></i>
+                        </div>
+                    )}
+                    {mensagemTipo == 'error' && (
+                        <div className={styles.ErrorDiv}>
+                            <p className={styles[mensagemTipo]}>{mensagem}</p>
+                            <i class='bx bx-revision' onClick={refreshpage}></i>
+                        </div>
+                    )}
+                    <div className={styles.Projetos}>
+                        {search.length > 0 ? (
+                            search.toReversed().map((projeto) => (
+                                <div className={styles.ProjetoCard} key={projeto.id}>
+                                    <div className={styles.projetoHeader}>
+                                        <h1>{projeto.nome}</h1>
+                                        <div className={styles.Icones}>
+                                            <button className={styles.btnProjeto} onClick={fetchServicos} id={projeto.id} onMouseDown={() => setNome(projeto.nome)}>Selecionar</button>
+                                            <i className='bx bx-x' id={projeto.id} onClick={(e) => {removerProjeto(e);refreshpage()}}></i>
+                                        </div>
+                                    </div>
+                                    <p>Tipo:<span className={styles.Span1}>{projeto.tipo}</span></p>
+                                    <p>Orçamento: <span className={styles.Span2}>{projeto.orcamento}</span></p>
+                                    <p>Prazo de entrega: <span className={styles.Span3}>{projeto.prazo}</span></p>
+                                </div>
+                            )
+                            )
+                        ) : (
+                            projetos.toReversed().map((projeto) => (
                                 <div className={styles.ProjetoCard} key={projeto.id}>
                                     <div className={styles.projetoHeader}>
                                         <h1>{projeto.nome}</h1>
@@ -241,33 +294,49 @@ function Projeto() {
                                 </div>
                             )
                             )
-                            }
-                        </div>
-                   
+                        )}
+
+                    </div>
+
                 </Animated>
                 <Animated animationIn="fadeInUp" animationOut="fadeOut" isVisible={true} className={styles.ServicosSection}>
-                   
-                        <div className={styles.Header2}>
+
+                    <div className={styles.Header2}>
+                        <div className={styles.header2Div1}>
                             <div>
                                 <h1>Serviços</h1>
                                 {projetoNome !== "" && (
                                     <p>Projeto Selecionado: {projetoNome}</p>
                                 )}
                             </div>
-                            {projetoServicoId ?  <button className={styles.btn} onClick={() => {mostrarCriar2(); setEstilo()}}>Criar Serviço</button> : <span>Selecione projeto para ver serviços</span>}
+                            {projetoServicoId ? <button className={styles.btn} onClick={() => { mostrarCriar2(); setEstilo() }}>Criar Serviço</button> : <span>Selecione projeto para ver serviços</span>}
                         </div>
-                        <div className={styles.Servicos}>
-                            {servicos.length > 0 && servicos.map((servico) => (
+                        <input type="Text" value={querySearch2} onChange={handleSearch2} placeholder='Procurar Serviços 🔍' className={styles.searchbar}/> 
+                    </div>
+                    <div className={styles.Servicos}>
+                        {search2.length > 0 ? (
+                            search2.toReversed().map((servico) => (
                                 <div className={styles.ServicoCard} key={servico.id} >
                                     <h1>{servico.nome}</h1>
                                     <p>Custo do serviço: {servico.custo}</p>
                                     <p>Descrição: {servico.descricao}</p>
                                     <p>{servico.criado} - {servico.prazo}</p>
-                                    <i className='bx bx-x' onClick={() => removerServico(servico.id, servico.custo)}></i>
+                                    <i className='bx bx-x' onClick={() => {removerServico(servico.id, servico.custo);removerSearch2(servico.id)}}></i>
                                 </div>
-                            ))}
-                        </div>
-                   
+                            ))
+                        ) : (
+                            servicos.map((servico) => (
+                                <div className={styles.ServicoCard} key={servico.id} >
+                                    <h1>{servico.nome}</h1>
+                                    <p>Custo do serviço: {servico.custo}</p>
+                                    <p>Descrição: {servico.descricao}</p>
+                                    <p>{servico.criado} - {servico.prazo}</p>
+                                    <i className='bx bx-x' onClick={() => {removerServico(servico.id, servico.custo)}}></i>
+                                </div>
+                            ))
+                        )}
+                    </div>
+
                 </Animated>
             </div>
         </div>

@@ -5,6 +5,7 @@ import CriarServico from "../Layout/CriarServico"
 import { useEffect, useState, useRef } from "react"
 import { v4 as uuidv4 } from 'uuid';
 import { Animated } from "react-animated-css";
+import EditarProjeto from "../Layout/EditarProjeto"
 
 
 
@@ -21,6 +22,8 @@ function Projeto() {
     const [servicos, setServicos] = useState([]) // Serviços do projeto escolhido
 
     const [loading, setLoading] = useState(true) // Loading
+    const [loading2, setLoading2] = useState() // Loading
+
     const [mensagem, setMensagem] = useState('') // Mensagem de erro ou sucesso
     const [mensagemTipo, setMensagemTipo] = useState('') // Tipo da mensagem
     const [projetoEstilo, setprojetoEstilo] = useState('Projeto') // Estilo dinamico da div principal
@@ -36,13 +39,19 @@ function Projeto() {
 
     // Pega todos os projetos
     useEffect(() => {
+        let controller = new AbortController()
+        let timeId = setTimeout(() => {
+            controller.abort()
+        },3000)
         setTimeout(() => {
-            fetch("http://localhost:5000/Projetos", {
+            fetch("https://progrid-b38f38c25708.herokuapp.com/Projetos", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
-                }
-            })
+                },
+                signal: controller.signal
+            })  
+                .then(clearTimeout(timeId))
                 .then(resp => resp.json())
                 .then((data) => {
                     setProjetos(data)
@@ -62,7 +71,7 @@ function Projeto() {
         projeto.servicos = []
         projeto.custo = 0
 
-        fetch("http://localhost:5000/Projetos", {
+        fetch("https://progrid-b38f38c25708.herokuapp.com/Projetos", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -76,7 +85,7 @@ function Projeto() {
     // Remove o projeto selecionado
     function removerProjeto(e) {
         let id = e.target.id
-        fetch(`http://localhost:5000/Projetos/${id}`, {
+        fetch(`https://progrid-b38f38c25708.herokuapp.com/Projetos/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -93,16 +102,24 @@ function Projeto() {
     //Pega os serviços do projeto selecionado
     function fetchServicos(e) {
         setprojetoServicoId(e.target.id)
-        fetch(`http://localhost:5000/Projetos/${e.target.id}`, {
+        setLoading2(true)
+        let controller = new AbortController()
+        let timeId = setTimeout(() => {
+            controller.abort()
+        },3000)
+
+        fetch(`https://progrid-b38f38c25708.herokuapp.com/Projetos/${e.target.id}`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json"
             },
-        })
+            signal: controller.signal
+        })  .then(clearInterval(timeId))
             .then(resp => resp.json())
             .then((data) => {
                 setServicos(data.servicos)
                 setprojetoServico(data)
+                setLoading2(false)
             })
             .catch(err => console.log(err))
     }
@@ -134,7 +151,7 @@ function Projeto() {
 
         novoProjeto.custo = novoCusto
 
-        fetch(`http://localhost:5000/Projetos/${projetoServicoId}`, {
+        fetch(`https://progrid-b38f38c25708.herokuapp.com/Projetos/${projetoServicoId}`, {
             method: 'PATCH',
             headers: {
                 "Content-Type": "application/json"
@@ -156,7 +173,7 @@ function Projeto() {
         novoProjeto.servicos = Filtro
         novoProjeto.custo = novoProjeto.custo - custo
 
-        fetch(`http://localhost:5000/Projetos/${projetoServicoId}`, {
+        fetch(`https://progrid-b38f38c25708.herokuapp.com/Projetos/${projetoServicoId}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': "application/json"
@@ -239,9 +256,10 @@ function Projeto() {
                 <div className={styles.CriarServico}>
                     <CriarServico setMostrar={mostrarCriar2} EnviarServico={EnviarServico} Projeto={projetoServico} setEstilo2={setEstilo2} />
                 </div>
-            )}
+            )} 
+            
             <div className={styles.Conteudo}>
-                <Animated className={styles.projetoSection} animationIn="fadeInUp" animationOut="fadeOut" isVisible={true}>
+                <div className={styles.projetoSection}>
                     <div className={styles.Header} >
                         <div>
                             <h1  >Meus projetos</h1>
@@ -298,9 +316,8 @@ function Projeto() {
 
                     </div>
 
-                </Animated>
-                <Animated animationIn="fadeInUp" animationOut="fadeOut" isVisible={true} className={styles.ServicosSection}>
-
+                </div>
+                <div className={styles.ServicosSection}>      
                     <div className={styles.Header2}>
                         <div className={styles.header2Div1}>
                             <div>
@@ -313,6 +330,12 @@ function Projeto() {
                         </div>
                         <input type="Text" value={querySearch2} onChange={handleSearch2} placeholder='Procurar Serviços 🔍' className={styles.searchbar}/> 
                     </div>
+                    {loading2 && (
+                        <div className={styles.Loading}>
+                            <p>Carregando serviços</p>
+                            <i class='bx bx-loader-circle bx-tada' ></i>
+                        </div>
+                    )}   
                     <div className={styles.Servicos}>
                         {search2.length > 0 ? (
                             search2.toReversed().map((servico) => (
@@ -337,7 +360,7 @@ function Projeto() {
                         )}
                     </div>
 
-                </Animated>
+                </div>
             </div>
         </div>
     )

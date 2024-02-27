@@ -14,7 +14,6 @@
     width: 1750px;
     height: 800px;
     transform: scale(0.94);
-    margin-top: 3%;
     position: fixed;
 }
 
@@ -200,5 +199,21 @@
 @media (width <= 930px) {
     .content {
         transform: scale(0.5);
+    }
+}
+
+@media (width <= 790px) {
+    .content {
+        transform: rotate(90deg) scale(0.5);      
+    }
+
+    .content h1 {
+        font-size: 2.3em;
+    }
+}
+
+@media (width <= 410px) {
+    .content {
+        transform: rotate(90deg) scale(0.4);
     }
 }

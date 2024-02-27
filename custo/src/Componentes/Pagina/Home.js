@@ -12,8 +12,7 @@ function Home() {
 
     useEffect(() => {
         const typed = new Typed(el.current, {
-            strings: ["Contratar designer", "Comprar material", "Alinhar ideias", "Montar Fluxograma"], // Strings to display
-            // Speed settings, try diffrent values untill you get good results
+            strings: ["Contratar designer", "Comprar material", "Alinhar ideias", "Montar Fluxograma"], 
             startDelay: 300,
             typeSpeed: 100,
             backSpeed: 90,

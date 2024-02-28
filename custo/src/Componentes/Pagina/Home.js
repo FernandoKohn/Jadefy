@@ -4,6 +4,7 @@ import gif1 from "../../img/gif1.gif"
 import gif2 from "../../img/gif2.gif"
 import Typed from "typed.js";
 import { useRef, useEffect } from "react";
+import { Animated } from "react-animated-css"
 
 
 function Home() {
@@ -29,11 +30,13 @@ function Home() {
 
     return (
         <div className={styles.home}>   
-            <div className={styles.content}>
+            <Animated animationIn="fadeInUp" animationOut="fadeOut" isVisible={true} className={styles.content}>
                 <div className={styles.div1}>
-                    <h1>Gerenciar seu</h1>
-                    <h1> negócio nunca</h1>
-                    <h1>foi tão<span className={styles.simples}> simples.</span></h1>
+                    <Animated Animated animationIn="fadeInLeft" animationOut="fadeOut" isVisible={true}>
+                        <h1>Gerenciar seu</h1>
+                        <h1> negócio nunca</h1>
+                        <h1>foi tão<span className={styles.simples}> simples.</span></h1>
+                    </Animated>
                 </div>
                 <div className={styles.div2}>
                     <div>
@@ -47,7 +50,7 @@ function Home() {
                         <p>Mantenha-se no orçamento com ferramentas poderosas de análise de custos, fornecendo insights valiosos para tomadas de decisões informadas.</p>
                     </div>
                 </div>
-                <div className={styles.div3}>
+                <Animated animationIn="fadeInUp" animationOut="fadeOut" isVisible={true} className={styles.div3}>
                     <div className={styles.opaco1}></div>
                     <div className={styles.opaco2}></div>
                     <div className={styles.opaco3}></div>
@@ -60,15 +63,15 @@ function Home() {
                         </div>
                         <button className={styles.btn2}>Adicionar serviço</button>
                     </div> 
-                    <div className={styles.banner}>
+                    <Animated animationIn="fadeInUpBig" animationOut="fadeOut" isVisible={true} className={styles.banner}>
                         <h1>ProGrid, seu aliado para o sucesso!</h1>
                         <p>Transforme a gestão de projetos e custos com ProGrid. Desenvolvida para simplificar e otimizar cada etapa do seu projeto.</p>
                         <Link to="/Projeto">
                         <button className={styles.btn}>Começar!</button>
                         </Link>
-                    </div>
-                </div>
-            </div>
+                    </Animated>
+                </Animated>
+            </Animated>
         </div>
     )
 }

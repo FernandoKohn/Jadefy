@@ -35,6 +35,9 @@ function Navbar() {
                             <p>Home</p>
                         </div>
                     </Link>
+                    <footer>
+                        <h1>© 2024 Fernando Kohn</h1>
+                    </footer>
             </Animated>
 
         </div>

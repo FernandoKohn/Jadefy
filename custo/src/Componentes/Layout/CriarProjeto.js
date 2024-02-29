@@ -9,9 +9,11 @@ import banner2 from "../../img/Banner2_ProGrid.png"
 function CriarProjeto({ mudarEstado, enviarProjeto, setEstilo2 }) {
 
     function setarForm(event) {
+        event.preventDefault()
         var data = new FormData(event.target)
         var value = Object.fromEntries(data.entries())
         enviarProjeto(value)
+        mudarEstado()
     }
 
     return (

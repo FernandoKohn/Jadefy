@@ -1,0 +1,12 @@
+.Loading {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    height: 100px;
+    align-items: center;
+}
+
+.Loading i {
+    font-size: 1.5em;
+    cursor: pointer;
+}

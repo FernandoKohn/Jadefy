@@ -1,0 +1,14 @@
+.error {
+    color: crimson;
+}
+
+.ErrorDiv {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.ErrorDiv i {
+    font-size: 1.5em;
+    cursor: pointer;
+}

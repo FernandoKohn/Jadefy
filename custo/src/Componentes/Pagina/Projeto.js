@@ -2,10 +2,12 @@ import styles from "./Projeto.module.css"
 import Navbar from "./Navbar"
 import CriarProjeto from "../Layout/CriarProjeto"
 import CriarServico from "../Layout/CriarServico"
+import Loading from "../Layout/Loading"
+import Mensagem from "../Layout/Mensagem"
 import { useEffect, useState, useRef } from "react"
 import { v4 as uuidv4 } from 'uuid';
-import { Animated } from "react-animated-css";
-import EditarProjeto from "../Layout/EditarProjeto"
+
+
 
 
 
@@ -23,6 +25,7 @@ function Projeto() {
 
     const [loading, setLoading] = useState(true) // Loading
     const [loading2, setLoading2] = useState() // Loading
+    const [loading3, setLoading3] = useState(false)
 
     const [mensagem, setMensagem] = useState('') // Mensagem de erro ou sucesso
     const [mensagemTipo, setMensagemTipo] = useState('') // Tipo da mensagem
@@ -39,10 +42,12 @@ function Projeto() {
 
     // Pega todos os projetos
     useEffect(() => {
+
         let controller = new AbortController()
         let timeId = setTimeout(() => {
             controller.abort()
         },3000)
+
         setTimeout(() => {
             fetch("https://progrid-b38f38c25708.herokuapp.com/Projetos", {
                 method: "GET",
@@ -80,11 +85,13 @@ function Projeto() {
         })
             .then(res => res.json())
             .catch(err => console.log(err))
+            
     }
 
     // Remove o projeto selecionado
     function removerProjeto(e) {
         let id = e.target.id
+
         fetch(`https://progrid-b38f38c25708.herokuapp.com/Projetos/${id}`, {
             method: "DELETE",
             headers: {
@@ -95,8 +102,10 @@ function Projeto() {
             .then((data) => {
                 setProjetos(projetos.filter((projeto) => projeto.id !== id))
                 setServicos([])
+                setLoading3(false)
             })
             .catch(err => console.log(err))
+           
     }
 
     //Pega os serviços do projeto selecionado
@@ -189,6 +198,44 @@ function Projeto() {
             .catch(err => console.log(err))
     }
 
+    // Search de projeto
+    const handleSearch = (e) => {
+        const query = e.target.value
+        setQuerySearch(query)
+        const resultado = projetos.filter((res) =>
+            res.nome.includes(query)
+        )
+        setSearch(resultado)
+    }
+
+    //Search de Serviços
+    const handleSearch2 = (e) => {
+        const query2 = e.target.value
+        setQuerySearch2(query2)
+        const resultado2 = servicos.filter((res) =>
+            res.nome.includes(query2)
+        )
+        setSearch2(resultado2)
+    }
+
+    // Remove dinamicamente o projeto durante o search
+    function removerSearch(nomeProj) {
+        var nome = nomeProj
+        let filtro = search.filter((proj) => 
+            !proj.nome.includes(nome)
+        )
+        setSearch(filtro)
+    }
+
+    // Remove dinamicamente o serviço durante o search
+    function removerSearch2(id) {
+        var Id = id
+        let filtro = search2.filter((servico) => 
+            !servico.id.includes(id)
+        )
+        setSearch2(filtro)
+    }
+
     function refreshpage() {
         window.location.reload()
     }
@@ -214,32 +261,6 @@ function Projeto() {
         setprojetoEstilo("Projeto")
     }
 
-    const handleSearch = (e) => {
-        const query = e.target.value
-        setQuerySearch(query)
-        const resultado = projetos.filter((res) =>
-            res.nome.includes(query)
-        )
-        setSearch(resultado)
-    }
-
-    const handleSearch2 = (e) => {
-        const query2 = e.target.value
-        setQuerySearch2(query2)
-        const resultado2 = servicos.filter((res) =>
-            res.nome.includes(query2)
-        )
-        setSearch2(resultado2)
-    }
-
-    function removerSearch2(id) {
-        var Id = id
-        const filtro = search2.filter((servico) => 
-            !servico.id.includes(id)
-        )
-        setSearch2(filtro)
-    }
-
 
 
     return (
@@ -262,22 +283,17 @@ function Projeto() {
                 <div className={styles.projetoSection}>
                     <div className={styles.Header} >
                         <div>
-                            <h1  >Meus projetos</h1>
+                            <h1>Meus projetos </h1>
+                            {loading3 == true && <i class='bx bx-loader-circle bx-tada' id={styles.headerLoading} ></i>}
                             <button onClick={() => { mostrarCriar(); setEstilo() }} className={styles.btn}>Criar Projeto</button>
                         </div>
                         <input type="Text" value={querySearch} onChange={handleSearch} placeholder='Procurar projetos 🔍' className={styles.searchbar}/>
                     </div>
                     {loading && (
-                        <div className={styles.Loading}>
-                            <p>Carregando projetos</p>
-                            <i class='bx bx-loader-circle bx-tada' ></i>
-                        </div>
+                        <Loading tipo={"Carregando Projetos"}/>
                     )}
                     {mensagemTipo == 'error' && (
-                        <div className={styles.ErrorDiv}>
-                            <p className={styles[mensagemTipo]}>{mensagem}</p>
-                            <i class='bx bx-revision' onClick={refreshpage}></i>
-                        </div>
+                        <Mensagem tipo={mensagemTipo} mensagem={mensagem} refreshpage={refreshpage}/>
                     )}
                     <div className={styles.Projetos}>
                         {search.length > 0 ? (
@@ -287,7 +303,7 @@ function Projeto() {
                                         <h1>{projeto.nome}</h1>
                                         <div className={styles.Icones}>
                                             <button className={styles.btnProjeto} onClick={fetchServicos} id={projeto.id} onMouseDown={() => setNome(projeto.nome)}>Selecionar</button>
-                                            <i className='bx bx-x' id={projeto.id} onClick={(e) => {removerProjeto(e);refreshpage()}}></i>
+                                            <i className='bx bx-x' id={projeto.id} onClick={(e) => {removerProjeto(e);removerSearch(projeto.nome)}}></i>
                                         </div>
                                     </div>
                                     <p>Tipo:<span className={styles.Span1}>{projeto.tipo}</span></p>
@@ -303,7 +319,7 @@ function Projeto() {
                                         <h1>{projeto.nome}</h1>
                                         <div className={styles.Icones}>
                                             <button className={styles.btnProjeto} onClick={fetchServicos} id={projeto.id} onMouseDown={() => setNome(projeto.nome)}>Selecionar</button>
-                                            <i className='bx bx-x' id={projeto.id} onClick={removerProjeto}></i>
+                                            <i className='bx bx-x' id={projeto.id} onClick={(e) => {removerProjeto(e);setLoading3(true)}}></i>
                                         </div>
                                     </div>
                                     <p>Tipo:<span className={styles.Span1}>{projeto.tipo}</span></p>
@@ -331,10 +347,7 @@ function Projeto() {
                         <input type="Text" value={querySearch2} onChange={handleSearch2} placeholder='Procurar Serviços 🔍' className={styles.searchbar}/> 
                     </div>
                     {loading2 && (
-                        <div className={styles.Loading}>
-                            <p>Carregando serviços</p>
-                            <i class='bx bx-loader-circle bx-tada' ></i>
-                        </div>
+                        <Loading tipo={"Carregando Serviços"}/>
                     )}   
                     <div className={styles.Servicos}>
                         {search2.length > 0 ? (
@@ -344,7 +357,7 @@ function Projeto() {
                                     <p>Custo do serviço: {servico.custo}</p>
                                     <p>Descrição: {servico.descricao}</p>
                                     <p>{servico.criado} - {servico.prazo}</p>
-                                    <i className='bx bx-x' onClick={() => {removerServico(servico.id, servico.custo);removerSearch2(servico.id)}}></i>
+                                    <i className='bx bx-x' onClick={() => {removerServico(servico.id, servico.custo); removerSearch2(servico.id)}}></i>
                                 </div>
                             ))
                         ) : (

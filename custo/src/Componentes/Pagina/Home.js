@@ -64,8 +64,8 @@ function Home() {
                         <button className={styles.btn2}>Adicionar serviço</button>
                     </div> 
                     <Animated animationIn="fadeInUpBig" animationOut="fadeOut" isVisible={true} className={styles.banner}>
-                        <h1>ProGrid, seu aliado para o sucesso!</h1>
-                        <p>Transforme a gestão de projetos e custos com ProGrid. Desenvolvida para simplificar e otimizar cada etapa do seu projeto.</p>
+                        <h1>Jadefy, seu aliado para o sucesso!</h1>
+                        <p>Transforme a gestão de projetos e custos com Jadefy. Desenvolvida para simplificar e otimizar cada etapa do seu projeto.</p>
                         <Link to="/Projeto">
                         <button className={styles.btn}>Começar!</button>
                         </Link>

@@ -26,7 +26,7 @@ function Navbar() {
             </div>
             <Animated animationIn="fadeInLeft" animationOut="fadeOut" isVisible={true} className={`${styles[style2]}`}>             
                     <header>
-                        <h1>ProGrid</h1>
+                        <h1>Jadefy</h1>
                         <i class='bx bx-x' onClick={toggleOff}></i>
                     </header>
                     <Link to={"/"}>

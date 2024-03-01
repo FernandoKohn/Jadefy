@@ -1,4 +1,3 @@
-
 .home {
     background-color: #0E4841;
     height: 100vh;
@@ -62,14 +61,18 @@
     align-items: end;
 }
 
-.opaco1, .opaco2, .opaco3, .opaco4 {
+.opaco1,
+.opaco2,
+.opaco3,
+.opaco4 {
     background: radial-gradient(rgba(0, 58, 51, 0.486), #e8ff8b2f);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    border-radius: 20px 20px 0 0 ;
+    border-radius: 20px 20px 0 0;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     width: 100%;
     height: 100%;
+    align-self: flex-end;
 }
 
 .opaco1 {
@@ -86,7 +89,7 @@
 
 .opaco4 {
     height: 80%;
-    border-radius: 20px 20px 20px 0 ;
+    border-radius: 20px 20px 20px 0;
 }
 
 .banner {
@@ -102,7 +105,7 @@
     color: white;
     padding: 5%;
     text-align: initial;
-    gap:30px;
+    gap: 30px;
     font-size: 0.95em;
     justify-content: end;
     background-image: url("../../img/banner5.png");
@@ -111,7 +114,8 @@
     background-position: 5%;
 }
 
-.btn {
+.btn,
+.btnMobile {
     width: 100%;
     border-radius: 20px;
     border: none;
@@ -119,6 +123,10 @@
     background-color: #E8FF8B;
     color: #0E4841;
     font-size: 1.2vw;
+}
+
+.btnMobile {
+    display: none;
 }
 
 .btn2 {
@@ -173,7 +181,7 @@
     box-shadow: inset 0 -0.4em 0 0 var(--gold);
 }
 
-@media (width <= 1630px) {
+@media (width <=1630px) {
 
     .content {
         width: 1500px;
@@ -182,7 +190,7 @@
 
 }
 
-@media (width <= 1228px) {
+@media (width <=1228px) {
 
     .content {
         transform: scale(0.7);
@@ -190,30 +198,155 @@
 
 }
 
-@media (width <= 1080px) {
+@media (width <=1080px) {
     .content {
         transform: scale(0.6);
     }
 }
 
-@media (width <= 930px) {
+@media (width <=930px) {
     .content {
         transform: scale(0.5);
     }
 }
 
-@media (width <= 790px) {
-    .content {
-        transform: rotate(90deg) scale(0.5);      
+@media (width <=790px) {
+
+    .home {
+        align-items: unset;
+        justify-content: unset;
+        width: unset;
+        height: unset;
     }
 
-    .content h1 {
-        font-size: 2.3em;
+    .content {
+        transform: scale(1);
+        width: 100vw;
+        height: 100vh;
+        position: relative;
+
+    }
+
+    .div1 {
+        width: 100%;
+        min-height: 750px;
+        border-radius: 0;
+    }
+
+    .div3 {
+        transform: scale(1);
+        top: 300px;
+        right: -80px;
+    }
+
+    .banner {
+        width: 380px;
+        height: 550px;
+        left: 80px;
+        font-size: 1.2em;
+    }
+
+
+    .opaco1,
+    .opaco2,
+    .opaco3,
+    .opaco4 {
+        border-radius: 20px 20px 0 0;
+    }
+
+    .opaco1 {
+        border-radius: 20px 20px 0 20px;
+    }
+
+    .btn {
+        font-size: 1.5em;
+    }
+
+    .btn2 {
+        font-size: 1.5em;
+    }
+
+    .div2 {
+        min-height: 1300px;
+        flex-direction: column;
+        border-radius: 0;
+        align-items: center;
+    }
+
+    .div2 div {
+        width: 100%;
+        height: 30%;
+        font-size: 1.5em;
+    }
+
+    #div2_1 {
+        margin-top: 350px;
+    }
+
+    .div2 img {
+        width: 20%;
+    }
+
+    .btnMobile {
+        display: block;
+        margin: 15% auto;
+        width: 300px;
+        font-size: 1.5em
+    }
+
+}
+
+
+
+@media (width <=550px) {
+
+    .div1 {
+        font-size: 1.8em;
+    }
+
+    .banner {
+        transform: scale(1.2);
+        background-position: 0px -50px;
+        background-color: #003A33;
+    }
+
+    .popup {
+        top: -40px;
+    }
+
+    .div3 {
+        transform: scale(0.7);
+        top: 200px;
+        right: -150px;
+        height: 900px;
+    }
+
+    .div2 div {
+        padding: 0;
+        align-items: center;
+        height: 500px;
+        text-align: center;
+        padding: 20px;
+    }
+
+    #div2_1 {
+        margin-top: 200px;
     }
 }
 
-@media (width <= 410px) {
-    .content {
-        transform: rotate(90deg) scale(0.4);
+@media (width <=415px) {
+    .div3 {
+        transform: scale(0.6);
+        right: -180px;
+    }
+
+    .div1 {
+        font-size: 1.8em;
+    }
+}
+
+@media (width <=405px) {
+    .div1 {
+        font-size: 7vw;
     }
 }

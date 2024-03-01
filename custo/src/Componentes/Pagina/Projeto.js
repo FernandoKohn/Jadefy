@@ -46,8 +46,8 @@ function Projeto() {
         let controller = new AbortController()
         let timeId = setTimeout(() => {
             controller.abort()
-        },3000)
-
+        }, 3000)
+        
         setTimeout(() => {
             fetch("https://progrid-b38f38c25708.herokuapp.com/Projetos", {
                 method: "GET",
@@ -55,7 +55,7 @@ function Projeto() {
                     "Content-Type": "application/json"
                 },
                 signal: controller.signal
-            })  
+            })
                 .then(clearTimeout(timeId))
                 .then(resp => resp.json())
                 .then((data) => {
@@ -85,7 +85,7 @@ function Projeto() {
         })
             .then(res => res.json())
             .catch(err => console.log(err))
-            
+
     }
 
     // Remove o projeto selecionado
@@ -105,7 +105,7 @@ function Projeto() {
                 setLoading3(false)
             })
             .catch(err => console.log(err))
-           
+
     }
 
     //Pega os serviços do projeto selecionado
@@ -115,7 +115,7 @@ function Projeto() {
         let controller = new AbortController()
         let timeId = setTimeout(() => {
             controller.abort()
-        },3000)
+        }, 3000)
 
         fetch(`https://progrid-b38f38c25708.herokuapp.com/Projetos/${e.target.id}`, {
             method: 'GET',
@@ -123,7 +123,7 @@ function Projeto() {
                 "Content-Type": "application/json"
             },
             signal: controller.signal
-        })  .then(clearInterval(timeId))
+        }).then(clearInterval(timeId))
             .then(resp => resp.json())
             .then((data) => {
                 setServicos(data.servicos)
@@ -221,7 +221,7 @@ function Projeto() {
     // Remove dinamicamente o projeto durante o search
     function removerSearch(nomeProj) {
         var nome = nomeProj
-        let filtro = search.filter((proj) => 
+        let filtro = search.filter((proj) =>
             !proj.nome.includes(nome)
         )
         setSearch(filtro)
@@ -230,7 +230,7 @@ function Projeto() {
     // Remove dinamicamente o serviço durante o search
     function removerSearch2(id) {
         var Id = id
-        let filtro = search2.filter((servico) => 
+        let filtro = search2.filter((servico) =>
             !servico.id.includes(id)
         )
         setSearch2(filtro)
@@ -277,8 +277,8 @@ function Projeto() {
                 <div className={styles.CriarServico}>
                     <CriarServico setMostrar={mostrarCriar2} EnviarServico={EnviarServico} Projeto={projetoServico} setEstilo2={setEstilo2} />
                 </div>
-            )} 
-            
+            )}
+
             <div className={styles.Conteudo}>
                 <div className={styles.projetoSection}>
                     <div className={styles.Header} >
@@ -287,13 +287,13 @@ function Projeto() {
                             {loading3 == true && <i class='bx bx-loader-circle bx-tada' id={styles.headerLoading} ></i>}
                             <button onClick={() => { mostrarCriar(); setEstilo() }} className={styles.btn}>Criar Projeto</button>
                         </div>
-                        <input type="Text" value={querySearch} onChange={handleSearch} placeholder='Procurar projetos 🔍' className={styles.searchbar}/>
+                        <input type="Text" value={querySearch} onChange={handleSearch} placeholder='Procurar projetos 🔍' className={styles.searchbar} />
                     </div>
                     {loading && (
-                        <Loading tipo={"Carregando Projetos"}/>
+                        <Loading tipo={"Carregando Projetos"} />
                     )}
                     {mensagemTipo == 'error' && (
-                        <Mensagem tipo={mensagemTipo} mensagem={mensagem} refreshpage={refreshpage}/>
+                        <Mensagem tipo={mensagemTipo} mensagem={mensagem} refreshpage={refreshpage} />
                     )}
                     <div className={styles.Projetos}>
                         {search.length > 0 ? (
@@ -303,7 +303,7 @@ function Projeto() {
                                         <h1>{projeto.nome}</h1>
                                         <div className={styles.Icones}>
                                             <button className={styles.btnProjeto} onClick={fetchServicos} id={projeto.id} onMouseDown={() => setNome(projeto.nome)}>Selecionar</button>
-                                            <i className='bx bx-x' id={projeto.id} onClick={(e) => {removerProjeto(e);removerSearch(projeto.nome)}}></i>
+                                            <i className='bx bx-x' id={projeto.id} onClick={(e) => { removerProjeto(e); removerSearch(projeto.nome) }}></i>
                                         </div>
                                     </div>
                                     <p>Tipo:<span className={styles.Span1}>{projeto.tipo}</span></p>
@@ -319,7 +319,7 @@ function Projeto() {
                                         <h1>{projeto.nome}</h1>
                                         <div className={styles.Icones}>
                                             <button className={styles.btnProjeto} onClick={fetchServicos} id={projeto.id} onMouseDown={() => setNome(projeto.nome)}>Selecionar</button>
-                                            <i className='bx bx-x' id={projeto.id} onClick={(e) => {removerProjeto(e);setLoading3(true)}}></i>
+                                            <i className='bx bx-x' id={projeto.id} onClick={(e) => { removerProjeto(e); setLoading3(true) }}></i>
                                         </div>
                                     </div>
                                     <p>Tipo:<span className={styles.Span1}>{projeto.tipo}</span></p>
@@ -333,7 +333,7 @@ function Projeto() {
                     </div>
 
                 </div>
-                <div className={styles.ServicosSection}>      
+                <div className={styles.ServicosSection}>
                     <div className={styles.Header2}>
                         <div className={styles.header2Div1}>
                             <div>
@@ -344,11 +344,11 @@ function Projeto() {
                             </div>
                             {projetoServicoId ? <button className={styles.btn} onClick={() => { mostrarCriar2(); setEstilo() }}>Criar Serviço</button> : <span>Selecione projeto para ver serviços</span>}
                         </div>
-                        <input type="Text" value={querySearch2} onChange={handleSearch2} placeholder='Procurar Serviços 🔍' className={styles.searchbar}/> 
+                        <input type="Text" value={querySearch2} onChange={handleSearch2} placeholder='Procurar Serviços 🔍' className={styles.searchbar} />
                     </div>
                     {loading2 && (
-                        <Loading tipo={"Carregando Serviços"}/>
-                    )}   
+                        <Loading tipo={"Carregando Serviços"} />
+                    )}
                     <div className={styles.Servicos}>
                         {search2.length > 0 ? (
                             search2.toReversed().map((servico) => (
@@ -357,7 +357,7 @@ function Projeto() {
                                     <p>Custo do serviço: {servico.custo}</p>
                                     <p>Descrição: {servico.descricao}</p>
                                     <p>{servico.criado} - {servico.prazo}</p>
-                                    <i className='bx bx-x' onClick={() => {removerServico(servico.id, servico.custo); removerSearch2(servico.id)}}></i>
+                                    <i className='bx bx-x' onClick={() => { removerServico(servico.id, servico.custo); removerSearch2(servico.id) }}></i>
                                 </div>
                             ))
                         ) : (
@@ -367,7 +367,7 @@ function Projeto() {
                                     <p>Custo do serviço: {servico.custo}</p>
                                     <p>Descrição: {servico.descricao}</p>
                                     <p>{servico.criado} - {servico.prazo}</p>
-                                    <i className='bx bx-x' onClick={() => {removerServico(servico.id, servico.custo)}}></i>
+                                    <i className='bx bx-x' onClick={() => { removerServico(servico.id, servico.custo) }}></i>
                                 </div>
                             ))
                         )}

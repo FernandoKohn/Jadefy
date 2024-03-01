@@ -4,7 +4,6 @@ import gif1 from "../../img/gif1.gif"
 import gif2 from "../../img/gif2.gif"
 import Typed from "typed.js";
 import { useRef, useEffect } from "react";
-import { Animated } from "react-animated-css"
 
 
 function Home() {
@@ -13,7 +12,7 @@ function Home() {
 
     useEffect(() => {
         const typed = new Typed(el.current, {
-            strings: ["Contratar designer", "Comprar material", "Alinhar ideias", "Montar Fluxograma"], 
+            strings: ["Contratar designer", "Comprar material", "Alinhar ideias", "Montar Fluxograma"],
             startDelay: 300,
             typeSpeed: 100,
             backSpeed: 90,
@@ -29,17 +28,15 @@ function Home() {
 
 
     return (
-        <div className={styles.home}>   
-            <Animated animationIn="fadeInUp" animationOut="fadeOut" isVisible={true} className={styles.content}>
+        <div className={styles.home}>
+            <div className={styles.content}>
                 <div className={styles.div1}>
-                    <Animated Animated animationIn="fadeInLeft" animationOut="fadeOut" isVisible={true}>
-                        <h1>Gerenciar seu</h1>
-                        <h1> negócio nunca</h1>
-                        <h1>foi tão<span className={styles.simples}> simples.</span></h1>
-                    </Animated>
+                    <h1>Gerenciar seu</h1>
+                    <h1> negócio nunca</h1>
+                    <h1>foi tão<span className={styles.simples}> simples.</span></h1>
                 </div>
                 <div className={styles.div2}>
-                    <div>
+                    <div id={styles.div2_1}>
                         <img src={gif1} alt="gif" />
                         <h1>Gestão de Projetos</h1>
                         <p>Desde a concepção até a conclusão, acompanhe cada fase do seu projeto de forma intuitiva e eficiente.</p>
@@ -49,8 +46,11 @@ function Home() {
                         <h1>Análise de Custos</h1>
                         <p>Mantenha-se no orçamento com ferramentas poderosas de análise de custos, fornecendo insights valiosos para tomadas de decisões informadas.</p>
                     </div>
+                    <Link to="/Projeto">
+                        <button className={styles.btnMobile}>Começar!</button>
+                    </Link>
                 </div>
-                <Animated animationIn="fadeInUp" animationOut="fadeOut" isVisible={true} className={styles.div3}>
+                <div className={styles.div3}>
                     <div className={styles.opaco1}></div>
                     <div className={styles.opaco2}></div>
                     <div className={styles.opaco3}></div>
@@ -62,22 +62,22 @@ function Home() {
                             <h1><span ref={el}></span></h1>
                         </div>
                         <button className={styles.btn2}>Adicionar serviço</button>
-                    </div> 
-                    <Animated animationIn="fadeInUpBig" animationOut="fadeOut" isVisible={true} className={styles.banner}>
+                    </div>
+                    <div className={styles.banner}>
                         <h1>Jadefy, seu aliado para o sucesso!</h1>
                         <p>Transforme a gestão de projetos e custos com Jadefy. Desenvolvida para simplificar e otimizar cada etapa do seu projeto.</p>
                         <Link to="/Projeto">
-                        <button className={styles.btn}>Começar!</button>
+                            <button className={styles.btn}>Começar!</button>
                         </Link>
-                    </Animated>
-                </Animated>
-            </Animated>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
 
 
-// <Link to="/Projeto">Criar Projeto</Link>
+
 export default Home
 
 

@@ -240,7 +240,7 @@ function Projeto() {
         window.location.reload()
     }
 
-    function mostrarCriar() {
+    function mostrarCriar1() {
         setMostrar(!mostrar1)
     }
 
@@ -270,7 +270,7 @@ function Projeto() {
             <Navbar />
             {mostrar1 && (
                 <div className={styles.CriarProjeto}>
-                    <CriarProjeto enviarProjeto={enviarProjeto} mudarEstado={mostrarCriar} setEstilo2={setEstilo2} />
+                    <CriarProjeto enviarProjeto={enviarProjeto} mudarEstado={setMostrar} setEstilo2={setEstilo2} />
                 </div>
             )}
             {mostrar2 && (
@@ -285,7 +285,7 @@ function Projeto() {
                         <div>
                             <h1>Meus projetos </h1>
                             {loading3 == true && <i class='bx bx-loader-circle bx-tada' id={styles.headerLoading} ></i>}
-                            <button onClick={() => { mostrarCriar(); setEstilo() }} className={styles.btn}>Criar Projeto</button>
+                            <button onClick={() => { setMostrar(!mostrar1); setEstilo() }} className={styles.btn}>Criar Projeto</button>
                         </div>
                         <input type="Text" value={querySearch} onChange={handleSearch} placeholder='Procurar projetos 🔍' className={styles.searchbar} />
                     </div>

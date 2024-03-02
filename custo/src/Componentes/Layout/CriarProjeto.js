@@ -49,7 +49,7 @@ function CriarProjeto({ mudarEstado, enviarProjeto, setEstilo2 }) {
                         </div>
                     </div>
                     <div className={styles.Botoes}>
-                        <button type="submit" className={styles.btn} onClick={() => {mudarEstado();setEstilo2()}}>Voltar</button>
+                        <button className={styles.btn} onClick={() => {mudarEstado(false);setEstilo2()}}>Voltar</button>
                         <button type="submit" className={styles.btn2}>Cadastrar Projeto</button>
                     </div>
                 </form>

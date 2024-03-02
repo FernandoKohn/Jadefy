@@ -5,7 +5,7 @@
 }
 
 *{
-  -webkit-appearance: none
+  appearance: none
 }
 
 ::-webkit-scrollbar {

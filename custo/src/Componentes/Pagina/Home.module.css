@@ -59,6 +59,8 @@
     width: 600px;
     height: 100%;
     align-items: end;
+    background-color: #e8ff8b00;
+    border-radius: 20px;
 }
 
 .opaco1,
@@ -235,8 +237,10 @@
 
     .div3 {
         transform: scale(1);
+        height: 800px;
         top: 300px;
         right: -80px;
+        overflow: hidden;
     }
 
     .banner {

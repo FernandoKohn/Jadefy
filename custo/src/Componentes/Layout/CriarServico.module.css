@@ -190,6 +190,13 @@
     
 }
 
+@media (width <= 600px) {
+    .ServicoSection {
+        width: 100%;
+        height: 100%;
+    }
+}
+
 @media screen and (max-width: 480px) {
     .btn, .btn2 {
         width: 140px;

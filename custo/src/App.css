@@ -4,6 +4,10 @@
   src: url("../fonts/Articulat\ CF\ Medium.otf");
 }
 
+*{
+  -webkit-appearance: none
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }

@@ -11,6 +11,7 @@ function CriarServico({ setMostrar, EnviarServico, Projeto, setEstilo2 }) {
         Projeto.servicos.push(value)
         EnviarServico(Projeto)
     }
+    
 
 
     return (
@@ -31,7 +32,7 @@ function CriarServico({ setMostrar, EnviarServico, Projeto, setEstilo2 }) {
                         </div>
                         <div>
                             <label htmlFor="ServCusto">Custo do Serviço</label>
-                            <input type="number" name="custo" id="ServCusto" max="1000000000" placeholder="Insira o custo do serviço" />
+                            <input type="number" name="custo" id="ServCusto" max="1000000000" placeholder="Insira o custo do serviço" required />
                         </div>
                     </div>
                     <div className={styles.Row}>
@@ -41,7 +42,7 @@ function CriarServico({ setMostrar, EnviarServico, Projeto, setEstilo2 }) {
                         </div>
                         <div>
                             <label htmlFor="ServPrazo">Prazo de Entrega</label>
-                            <input type="date" name="prazo" id="ServPrazo" />
+                            <input type="date" name="prazo" id="ServPrazo" required/>
                         </div>
                     </div>
                     <div className={styles.Botoes}>

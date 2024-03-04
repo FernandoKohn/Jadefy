@@ -1,27 +1,16 @@
-input[type="date"]
-{
-    display:block;
-    appearance: textfield;
-    -moz-appearance: textfield;
-    min-height: 1.2em;
-}
-
 .ServicoSection {
-    width: 1200px;
+    width: 1400px;
     height: 800px;
     background-color: #FFFFFF;
     border-radius: 15px;
     display: flex;
     position: relative;
-
 }
 
 .Div1 {
-    width: 35%;
     background-color: #003A33;
     border-radius: 15px 0 0 15px;
     display: flex;
-
 }
 
 .Banner {
@@ -31,7 +20,6 @@ input[type="date"]
 
 
 .Div2 {
-    width: 65%;
     display: flex;
     flex-direction: column;
     background-color: #E4E8EE;
@@ -60,6 +48,7 @@ input[type="date"]
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
 }
 
 .Formulario input {
@@ -104,7 +93,8 @@ input[type="date"]
 .Botoes {
     display: flex;
     width: 100%;
-    justify-content: space-around;
+    gap: 32%;
+    padding-left: 10%;
 }
 
 .btn, .btn2 {
@@ -128,7 +118,7 @@ input[type="date"]
 
 @media screen and (max-width: 1300px) {
     .ServicoSection {
-        transform: scale(0.7);
+        transform: scale(0.9);
         width: 1200px;
     }
 
@@ -139,14 +129,23 @@ input[type="date"]
     .Div2 {
         width: 100%;
     }
+
+    .Formulario {
+        width: 700px;
+    }
     
     .Formulario input {
         width: 250px;
     }
+
+    .Botoes {
+        padding-left: 8%;
+        gap: 25%;
+    }
 }
 
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1170px) {
     .ServicoSection {
         transform: scale(1);
         width: 90%;
@@ -174,6 +173,10 @@ input[type="date"]
         border-radius: 10px;
     }
 
+    .Formulario {
+        width: 100%;
+    }
+
     .Formulario input {
         width: 100%;
         font-size: 0.9em;
@@ -189,9 +192,13 @@ input[type="date"]
         padding: 0;
     }
 
-
+    .Botoes {
+        justify-content: space-around;
+        padding: 0;
+    }
+    
     .btn, .btn2 {
-        width: 190px;
+        width: 220px;
         margin-top: 20px;
     }
 
@@ -207,7 +214,7 @@ input[type="date"]
 
 @media screen and (max-width: 480px) {
     .btn, .btn2 {
-        width: 140px;
+        width: 220px;
         height: 50px;
         font-size: 0.9em;
         padding: 0;

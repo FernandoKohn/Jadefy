@@ -36,6 +36,7 @@ function Projeto() {
 
     const [querySearch2, setQuerySearch2] = useState('') // Conteudo pesquisado no search de serviços
     const [search2, setSearch2] = useState([]) // Obj com o resultado
+    const [refresh, setRefresh] = useState(false)
 
     const topo = useRef()
 
@@ -68,11 +69,12 @@ function Projeto() {
                     setLoading(false)
                 })
         }, 700)
-    })
+    }, [refresh])
 
     // Envia o projeto após criar ele
     function enviarProjeto(projeto) {
-
+        setLoading3(true)
+        setEstilo2()
         projeto.servicos = []
         projeto.custo = 0
 
@@ -84,6 +86,10 @@ function Projeto() {
             body: JSON.stringify(projeto)
         })
             .then(res => res.json())
+            .then(() => {
+                setRefresh(!refresh)
+                setLoading3(false)
+            })
             .catch(err => console.log(err))
 
     }
@@ -103,6 +109,7 @@ function Projeto() {
                 setProjetos(projetos.filter((projeto) => projeto.id !== id))
                 setServicos([])
                 setLoading3(false)
+                setRefresh(!refresh)
             })
             .catch(err => console.log(err))
 
@@ -129,12 +136,14 @@ function Projeto() {
                 setServicos(data.servicos)
                 setprojetoServico(data)
                 setLoading2(false)
+                setRefresh(!refresh)
             })
             .catch(err => console.log(err))
     }
 
     //Envia serviços criados
     function EnviarServico(novoProjeto) {
+        setEstilo2()
 
         // Adiciona id ao ultimo serviço
         var ultimoservico = novoProjeto.servicos[novoProjeto.servicos.length - 1]
@@ -171,6 +180,7 @@ function Projeto() {
             .then((data) => {
                 setMostrar2(false)
                 setServicos(data.servicos)
+                setRefresh(!refresh)
             })
             .catch(err => console.log(err))
     }
@@ -193,6 +203,7 @@ function Projeto() {
             .then(data => {
                 setprojetoServico(novoProjeto)
                 setServicos(data.servicos)
+                setRefresh(!refresh)
 
             })
             .catch(err => console.log(err))
@@ -240,23 +251,25 @@ function Projeto() {
         window.location.reload()
     }
 
+    // Toggle criar projeto
     function mostrarCriar1() {
         setMostrar(!mostrar1)
     }
-
+    // Toggle criar serviço
     function mostrarCriar2() {
         setMostrar2(!mostrar2)
     }
 
+    // seta o nome do projeto selecionado
     function setNome(nome) {
         setProjetoNome(nome)
     }
-
+    
+    //estilo da div pai
     function setEstilo() {
         topo.current.scrollIntoView()
         setprojetoEstilo("ProjetoScrollLock")
     }
-
     function setEstilo2() {
         setprojetoEstilo("Projeto")
     }
@@ -270,7 +283,7 @@ function Projeto() {
             <Navbar />
             {mostrar1 && (
                 <div className={styles.CriarProjeto}>
-                    <CriarProjeto enviarProjeto={enviarProjeto} mudarEstado={setMostrar} setEstilo2={setEstilo2} />
+                    <CriarProjeto enviarProjeto={enviarProjeto} mudarEstado={mostrarCriar1} setEstilo2={setEstilo2} />
                 </div>
             )}
             {mostrar2 && (

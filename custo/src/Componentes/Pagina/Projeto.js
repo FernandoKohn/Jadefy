@@ -48,27 +48,27 @@ function Projeto() {
         let timeId = setTimeout(() => {
             controller.abort()
         }, 3000)
-        
-        setTimeout(() => {
-            fetch("https://progrid-b38f38c25708.herokuapp.com/Projetos", {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                signal: controller.signal
+
+
+        fetch("https://jadefy.onrender.com/Projetos", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            signal: controller.signal
+        })
+            .then(clearTimeout(timeId))
+            .then(resp => resp.json())
+            .then((data) => {
+                setProjetos(data)
+                setLoading(false)
             })
-                .then(clearTimeout(timeId))
-                .then(resp => resp.json())
-                .then((data) => {
-                    setProjetos(data)
-                    setLoading(false)
-                })
-                .catch((err) => {
-                    setMensagem("Não foi possível carregar os projetos.")
-                    setMensagemTipo('error')
-                    setLoading(false)
-                })
-        }, 700)
+            .catch((err) => {
+                setMensagem("Não foi possível carregar os projetos.")
+                setMensagemTipo('error')
+                setLoading(false)
+            })
+
     }, [refresh])
 
     // Envia o projeto após criar ele
@@ -78,7 +78,7 @@ function Projeto() {
         projeto.servicos = []
         projeto.custo = 0
 
-        fetch("https://progrid-b38f38c25708.herokuapp.com/Projetos", {
+        fetch("https://jadefy.onrender.com/Projetos", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -98,7 +98,7 @@ function Projeto() {
     function removerProjeto(e) {
         let id = e.target.id
 
-        fetch(`https://progrid-b38f38c25708.herokuapp.com/Projetos/${id}`, {
+        fetch(`https://jadefy.onrender.com/Projetos/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -124,7 +124,7 @@ function Projeto() {
             controller.abort()
         }, 3000)
 
-        fetch(`https://progrid-b38f38c25708.herokuapp.com/Projetos/${e.target.id}`, {
+        fetch(`https://jadefy.onrender.com/Projetos/${e.target.id}`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json"
@@ -169,7 +169,7 @@ function Projeto() {
 
         novoProjeto.custo = novoCusto
 
-        fetch(`https://progrid-b38f38c25708.herokuapp.com/Projetos/${projetoServicoId}`, {
+        fetch(`https://jadefy.onrender.com/Projetos/${projetoServicoId}`, {
             method: 'PATCH',
             headers: {
                 "Content-Type": "application/json"
@@ -192,7 +192,7 @@ function Projeto() {
         novoProjeto.servicos = Filtro
         novoProjeto.custo = novoProjeto.custo - custo
 
-        fetch(`https://progrid-b38f38c25708.herokuapp.com/Projetos/${projetoServicoId}`, {
+        fetch(`https://jadefy.onrender.com/Projetos/${projetoServicoId}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': "application/json"
@@ -264,7 +264,7 @@ function Projeto() {
     function setNome(nome) {
         setProjetoNome(nome)
     }
-    
+
     //estilo da div pai
     function setEstilo() {
         topo.current.scrollIntoView()

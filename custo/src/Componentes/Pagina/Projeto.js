@@ -12,7 +12,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 function Projeto() {
-
+    const [aviso, setAviso] = useState(true)
     const [mostrar1, setMostrar] = useState(false) // Toggle criar projeto
     const [mostrar2, setMostrar2] = useState(false) // Toggle criar serviço
 
@@ -62,6 +62,7 @@ function Projeto() {
             .then((data) => {
                 setProjetos(data)
                 setLoading(false)
+                setAviso(false)
             })
             .catch((err) => {
                 setMensagem("Não foi possível carregar os projetos.")
@@ -303,10 +304,10 @@ function Projeto() {
                         <input type="Text" value={querySearch} onChange={handleSearch} placeholder='Procurar projetos 🔍' className={styles.searchbar} />
                     </div>
                     {loading && (
-                        <Loading tipo={"Carregando Projetos"} />
+                        <Loading tipo={"Carregando Projetos"} aviso={aviso}/>
                     )}
                     {mensagemTipo == 'error' && (
-                        <Mensagem tipo={mensagemTipo} mensagem={mensagem} refreshpage={refreshpage} />
+                        <Mensagem tipo={mensagemTipo}  mensagem={mensagem} refreshpage={refreshpage} />
                     )}
                     <div className={styles.Projetos}>
                         {search.length > 0 ? (

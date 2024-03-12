@@ -1,11 +1,17 @@
 import styles from "./Loading.module.css"
 
-function Loading({tipo}) {
+function Loading({tipo,aviso}) {
+
     return (
         <>
             <div className={styles.Loading}>
-                <p>{tipo}</p>
-                <i class='bx bx-loader-circle bx-tada' ></i>
+                <div>
+                    <h1>{tipo}</h1>
+                    <i class='bx bx-loader-circle bx-tada' ></i>
+                </div>
+                {aviso && (
+                <p>Pode demorar ate 30s no primeiro carregamento por conta do serviço REST gratuito que desliga após 15 minutos.</p>
+                )}
             </div>
         </>
     )

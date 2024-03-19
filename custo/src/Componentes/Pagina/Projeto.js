@@ -50,7 +50,7 @@ function Projeto() {
         }, 3000)
 
 
-        fetch("https://jadefy.onrender.com/Projetos", {
+        fetch("https://agreeable-outstanding-dogwood.glitch.me/Projetos", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -79,7 +79,7 @@ function Projeto() {
         projeto.servicos = []
         projeto.custo = 0
 
-        fetch("https://jadefy.onrender.com/Projetos", {
+        fetch("https://agreeable-outstanding-dogwood.glitch.me/Projetos", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -99,7 +99,7 @@ function Projeto() {
     function removerProjeto(e) {
         let id = e.target.id
 
-        fetch(`https://jadefy.onrender.com/Projetos/${id}`, {
+        fetch(`https://agreeable-outstanding-dogwood.glitch.me/Projetos/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -125,7 +125,7 @@ function Projeto() {
             controller.abort()
         }, 3000)
 
-        fetch(`https://jadefy.onrender.com/Projetos/${e.target.id}`, {
+        fetch(`https://agreeable-outstanding-dogwood.glitch.me/Projetos/${e.target.id}`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json"
@@ -170,7 +170,7 @@ function Projeto() {
 
         novoProjeto.custo = novoCusto
 
-        fetch(`https://jadefy.onrender.com/Projetos/${projetoServicoId}`, {
+        fetch(`https://agreeable-outstanding-dogwood.glitch.me/Projetos/${projetoServicoId}`, {
             method: 'PATCH',
             headers: {
                 "Content-Type": "application/json"
@@ -193,7 +193,7 @@ function Projeto() {
         novoProjeto.servicos = Filtro
         novoProjeto.custo = novoProjeto.custo - custo
 
-        fetch(`https://jadefy.onrender.com/Projetos/${projetoServicoId}`, {
+        fetch(`https://agreeable-outstanding-dogwood.glitch.me/Projetos/${projetoServicoId}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': "application/json"

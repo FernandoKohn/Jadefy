@@ -17,5 +17,7 @@
 
 .Loading i {
     font-size: 1.5em;
+    padding-top: 6px;
+    padding-left: 5px;
     cursor: pointer;
 }

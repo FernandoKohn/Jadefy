@@ -11,6 +11,16 @@ function Home() {
     const el = useRef(null);
 
     useEffect(() => {
+
+        fetch("https://agreeable-outstanding-dogwood.glitch.me/Projetos", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then(resp => resp.json())
+        .catch(err => console.log(err))
+        
         const typed = new Typed(el.current, {
             strings: ["Contratar designer", "Comprar material", "Alinhar ideias", "Montar Fluxograma"],
             startDelay: 300,
@@ -24,6 +34,9 @@ function Home() {
         return () => {
             typed.destroy();
         };
+
+        
+
     }, []);
 
 

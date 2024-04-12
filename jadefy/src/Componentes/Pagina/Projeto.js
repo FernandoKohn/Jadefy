@@ -53,6 +53,7 @@ function Projeto() {
         fetch("https://agreeable-outstanding-dogwood.glitch.me/Projetos", {
             method: "GET",
             headers: {
+
                 "Content-Type": "application/json"
             },
             signal: controller.signal
@@ -78,6 +79,11 @@ function Projeto() {
         setEstilo2()
         projeto.servicos = []
         projeto.custo = 0
+
+        // formata a data
+        let data = new Date(`${projeto.prazo}T00:00:00`)
+        let dataFormatada = data.toLocaleDateString()
+        projeto.prazo = dataFormatada
 
         fetch("https://agreeable-outstanding-dogwood.glitch.me/Projetos", {
             method: "POST",
@@ -156,7 +162,7 @@ function Projeto() {
         // Faz a relação da data criada e prazo
         var dataInicial = new Date()
         var dataFormatada = dataInicial.toLocaleDateString()
-        var dataFormatada2 = new Date(`${novoProjeto.servicos[novoProjeto.servicos.length - 1].prazo}`)
+        var dataFormatada2 = new Date(`${novoProjeto.servicos[novoProjeto.servicos.length - 1].prazo}T00:00:00`)
         var dataFinal = dataFormatada2.toLocaleDateString()
         novoProjeto.servicos[novoProjeto.servicos.length - 1].criado = dataFormatada
         novoProjeto.servicos[novoProjeto.servicos.length - 1].prazo = dataFinal

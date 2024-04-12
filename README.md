@@ -2,7 +2,7 @@
 
 Gerenciador de projetos, serviços e custos.
 
-- ▶️ [️Demonstração](#Como_funciona)
+- ▶️ [️Demonstração](#Como-funciona)
 - ‍💻 [Tecnologias](#Tecnologias)
 
 ![jadefy1](https://github.com/FernandoKohn/Jadefy/assets/131038556/64a9a72b-7114-4864-998d-ba2f3a9ffebe)
